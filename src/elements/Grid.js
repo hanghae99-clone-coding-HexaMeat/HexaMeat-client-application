@@ -4,7 +4,9 @@ import styled from "styled-components";
 const Grid = (props) => {
   const {
     is_flex,
+    is_flex2,
     flex,
+    is_float,
     position,
     padding,
     margin,
@@ -29,11 +31,15 @@ const Grid = (props) => {
     review_flex,
     post_flex,
     card_flex,
+    is_header,
+    is_center,
   } = props;
 
   const styles = {
     is_flex: is_flex,
+    is_flex2: is_flex2,
     flex: flex,
+    is_float: is_float,
     review_flex: review_flex,
     post_flex: post_flex,
     position: position,
@@ -56,6 +62,7 @@ const Grid = (props) => {
     wrap: wrap,
     border: border,
     card_flex: card_flex,
+    is_header: is_header,
   };
 
   return (
@@ -71,6 +78,8 @@ const Grid = (props) => {
 Grid.defaultProps = {
   children: null,
   is_flex: false,
+  is_flex2: false,
+  is_float: false,
   review_flex: false,
   post_flex: false,
   card_flex: false,
@@ -95,6 +104,7 @@ Grid.defaultProps = {
   maxHeight: false,
   wrap: "",
   border: "",
+  is_header: "",
 };
 
 const GridBox = styled.div`
@@ -118,19 +128,25 @@ const GridBox = styled.div`
     props.is_flex
       ? `display: flex; align-items: center; justify-content: space-between;`
       : ""}
+  ${(props) =>
+    props.is_flex2
+      ? `display: flex; align-items: center; justify-content: center;`
+      : ""}
   ${(props) => (props.position ? `position: ${props.position};` : "")}
   ${(props) => (props.top ? `top: ${props.top};` : "")}
   ${(props) => (props.left ? `left: ${props.left};` : "")}
   ${(props) => (props.right ? `right: ${props.right};` : "")}
   ${(props) => (props.maxHeight ? `max-height: ${props.maxHeight};` : "")}
   ${(props) => (props.flex ? `display: flex; ` : "")}
-  ${(props) => (props.card_flex ? `display: flex; justify-content: center;` : "")}
+  ${(props) =>
+    props.card_flex ? `display: flex; justify-content: center;` : ""}
   ${(props) => (props.wrap ? `flex-wrap: wrap;` : "")}
   ${(props) =>
     props.border ? `border-radius: 0.4rem; border: 1px solid #718093;` : ""}
-
-
-@media (min-width: 501px) {
+  ${(props) =>
+    props.is_header ? `position: sticky; top: 0; z-index: 10;` : ""};
+  ${(props) => (props.is_float ? `float: ${props.is_float}; ` : "")}
+  @media (min-width: 501px) {
     ${(props) =>
       props.review_flex
         ? `display: flex; align-items: center; justify-content: space-between;`

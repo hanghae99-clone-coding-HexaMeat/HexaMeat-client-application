@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Text = (props) => {
   const {
     bold,
+    bold2,
     color,
     size,
     children,
@@ -16,6 +17,7 @@ const Text = (props) => {
 
   const styles = {
     bold: bold,
+    bold2: bold2,
     color: color,
     size: size,
     margin,
@@ -35,6 +37,7 @@ const Text = (props) => {
 Text.defaultProps = {
   children: null,
   bold: false,
+  bold2: false,
   color: "#222831",
   size: "1.4rem",
   margin: false,
@@ -49,6 +52,7 @@ const P = styled.p`
   color: ${(props) => props.color};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "600" : "400")};
+  ${(props) => (props.bold2 ? `font-weight: ${props.bold2};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
   ${(props) => (props.width ? `width: ${props.width};` : "")}
