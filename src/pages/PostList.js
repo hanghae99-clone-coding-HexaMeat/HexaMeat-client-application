@@ -49,7 +49,7 @@ const PostList = (props) => {
       </Grid>
       <hr />
       <Grid>
-        <Grid margin="3rem 12rem 3rem 12rem">
+        <Grid margin="3rem 12rem 3rem 12rem" width="">
           <Text bold2="900" size="1.5rem" cursor>
             <span style={{ fontWeight: "400", margin: "0 2.5rem 0 0" }}>
               이용약관
@@ -58,7 +58,7 @@ const PostList = (props) => {
           </Text>
         </Grid>
 
-        <Grid is_flex margin="3rem 12rem 3rem 12rem">
+        <Grid width="" is_flex margin="3rem 12rem 3rem 12rem">
           <Grid is_float="left">
             <Grid>
               <Main5 />
@@ -73,12 +73,12 @@ const PostList = (props) => {
             </Text>
             <Text>개인정보관리책임자: 박준태(privacy@yookgak.com)</Text>
           </Grid>
-          <Grid is_float="right">
-            <Text>고객센터</Text>
-            <Text>1800-0658</Text>
-            <span>평일: 08:30 - 17:30</span>
-            <span>점심: 12:30 - 13:30</span>
-            <span>(토, 일 및 공휴일 휴무)</span>
+          <Grid text_align="right" is_float="right" padding="0 2rem 0 0">
+            <Text size="1.4rem" margin="-5rem 0 0 0">고객센터</Text>
+            <Text size="2.4rem" bold2="900" margin="0">1800-0658</Text>
+            <Text margin="0">평일: 08:30 - 17:30</Text>
+            <Text margin="0">점심: 12:30 - 13:30</Text>
+            <Text margin="0">(토, 일 및 공휴일 휴무)</Text>
           </Grid>
         </Grid>
       </Grid>

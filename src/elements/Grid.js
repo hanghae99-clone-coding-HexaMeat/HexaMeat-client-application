@@ -33,6 +33,8 @@ const Grid = (props) => {
     card_flex,
     is_header,
     is_center,
+    is_border,
+    text_align,
   } = props;
 
   const styles = {
@@ -63,6 +65,8 @@ const Grid = (props) => {
     border: border,
     card_flex: card_flex,
     is_header: is_header,
+    is_border: is_border,
+    text_align: text_align,
   };
 
   return (
@@ -105,6 +109,8 @@ Grid.defaultProps = {
   wrap: "",
   border: "",
   is_header: "",
+  is_border: "",
+  text_align: "",
 };
 
 const GridBox = styled.div`
@@ -143,9 +149,11 @@ const GridBox = styled.div`
   ${(props) => (props.wrap ? `flex-wrap: wrap;` : "")}
   ${(props) =>
     props.border ? `border-radius: 0.4rem; border: 1px solid #718093;` : ""}
+  ${(props) => (props.is_border ? `border: ${props.is_border};` : "")}
   ${(props) =>
     props.is_header ? `position: sticky; top: 0; z-index: 10;` : ""};
   ${(props) => (props.is_float ? `float: ${props.is_float}; ` : "")}
+  ${(props) => (props.text_align ? `text-align: ${props.text_align}; ` : "")}
   @media (min-width: 501px) {
     ${(props) =>
       props.review_flex
