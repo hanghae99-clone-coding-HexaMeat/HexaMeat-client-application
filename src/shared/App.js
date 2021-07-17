@@ -9,6 +9,8 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 
 import { Grid } from "../elements";
+import Shopping from "../components/Shopping";
+import Cart from "../components/Cart";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           {/* <Header></Header> */}
           <Route path="/" exact component={PostList} />
           <Route path="/post/test" exact component={Detail}/>
+          <Route path="/posts" exact component={Shopping} />
+          <Route path="/cart" exact component={Cart} />
         </ConnectedRouter>
       </Grid>
     </React.Fragment>
