@@ -38,6 +38,7 @@ const Post = (props) => {
           />
         </CartBtn>
       </Grid>
+      
       <Grid maxWidth="37.6rem">
         <Text bold2="900" size="2rem" margin="1.6rem 0 0 0" cursor="t">
           초신선 상품 이름 자리
