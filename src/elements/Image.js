@@ -2,12 +2,14 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { shape, src, size, children, radius, _onClick, cursor } = props;
+  const { shape, src, size, children, radius, _onClick, cursor, margin } =
+    props;
   const styles = {
     src: src,
     size: size,
     radius: radius,
     cursor: cursor,
+    margin: margin,
   };
 
   if (shape === "circle") {
@@ -63,7 +65,8 @@ const AspectInner = styled.div`
   background-position: center;
   background-size: cover;
   ${(props) => (props.radius ? `border-radius: 0.5rem;` : "")}
-  ${(props) => (props.cursor? `cursor: pointer;`: '')}
+  ${(props) => (props.cursor ? `cursor: pointer;` : "")}
+  ${(props) => (props.margin ? `margin: ${props.margin}` : "")}
 `;
 
 const ImageCircle = styled.div`
