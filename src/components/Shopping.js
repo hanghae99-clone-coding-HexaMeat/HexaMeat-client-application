@@ -60,22 +60,22 @@ const Shopping = (props) => {
 };
 
 const ShopBtn = styled.button`
-  
   width: 14.3rem;
   height: 5.6rem;
   line-height: 5.6rem;
   font-size: 1.6rem;
   font-weight: 700;
   border: none;
-  border-radius: 3%; 
+  border-radius: 3%;
   background-color: #eee;
   margin: 1rem 0.5rem 5rem 0.5rem;
   display: inline-block;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: #212121;
     color: white;
     font-weight: 700;
+  }
 `;
 
 export default Shopping;
