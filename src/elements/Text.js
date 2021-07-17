@@ -13,6 +13,8 @@ const Text = (props) => {
     padding,
     _onClick,
     cursor,
+    is_float,
+    text_align,
   } = props;
 
   const styles = {
@@ -25,6 +27,8 @@ const Text = (props) => {
     padding: padding,
     _onClick: _onClick,
     cursor,
+    is_float: is_float,
+    text_align: text_align,
   };
 
   return (
@@ -45,6 +49,8 @@ Text.defaultProps = {
   padding: false,
   _onClick: () => {},
   cursor: "",
+  is_float: "",
+  text_align: "",
 };
 
 const P = styled.p`
@@ -57,6 +63,8 @@ const P = styled.p`
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
   ${(props) => (props.width ? `width: ${props.width};` : "")}
   ${(props) => (props.cursor ? `cursor: pointer;` : "")};
+  ${(props) => (props.is_float ? `float: ${props.is_float}` : "")}
+  ${(props) => (props.text_align ? `text-align: ${props.text_align}` : "")}
 `;
 
 export default Text;

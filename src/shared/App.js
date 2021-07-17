@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import PostList from "../pages/PostList";
+import Detail from "../components/Detail";
 import Header from "../components/Header";
 
 import { Route } from "react-router-dom";
@@ -18,6 +19,7 @@ function App() {
         <ConnectedRouter history={history}>
           {/* <Header></Header> */}
           <Route path="/" exact component={PostList} />
+          <Route path="/post/test" exact component={Detail}/>
           <Route path="/posts" exact component={Shopping} />
           <Route path="/cart" exact component={Cart} />
         </ConnectedRouter>
