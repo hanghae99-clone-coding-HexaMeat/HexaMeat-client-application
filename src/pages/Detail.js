@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Image, Button } from "../elements";
+
+import { Grid, Text, Button } from "../elements";
+
 import DropDown from "../components/DropDown";
 import Quantity from "../components/Quantity";
 import Copyright from "../components/Copyright";
@@ -138,7 +140,6 @@ const Desc = styled.div`
   height: 100rem;
   padding-top: 146%;
   background-image: url(${DetailExp});
-  /* background-position: 50%; */
   background-size: cover;
 `;
 
@@ -148,7 +149,6 @@ const Desc2 = styled.div`
   height: 100%;
   padding-top: 43%;
   background-image: url(${DetailExp2});
-  /* background-position: 50%; */
   background-size: cover;
 `;
 
@@ -158,7 +158,6 @@ const Desc3 = styled.div`
   height: 100%;
   padding-top: 96%;
   background-image: url(${DetailExp3});
-  /* background-position: 50%; */
   background-size: cover;
 `;
 export default Detail;

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import styled from "styled-components";
 
@@ -6,13 +7,69 @@ import { Grid, Image, Text, Button } from "../elements";
 import { history } from "../redux/configureStore";
 import Post from "../components/Post";
 
+import banner_pork from "../shared/img/banner_pork.png";
+import banner_beef from "../shared/img/banner_beef.png";
+import banner_kfc from "../shared/img/banner_kfc.png";
+
 const Shopping = (props) => {
+  const [pork, setPork] = React.useState(true);
+  const [beef, setBeef] = React.useState(false);
+  const [kfc, setKfc] = React.useState(false);
+
+  const changePork = () => {
+    setPork(true); //값이 true, false가 되어 있어서 삼항연산자 사용 시 !사용 가능
+    setBeef(false);
+    setKfc(false);
+  };
+  const changeBeef = () => {
+    setBeef(true);
+    setPork(false);
+    setKfc(false);
+  };
+
+  const changeKfc = () => {
+    setKfc(true);
+    setPork(false);
+    setBeef(false);
+  };
+
   return (
     <div style={{ marginBottom: "6rem" }}>
-      <Grid is_flex2 wrap="true" margin="1rem auto 0 auto">
-        <ShopBtn cursor="t">돼지</ShopBtn>
-        <ShopBtn cursor="t">소</ShopBtn>
-        <ShopBtn cursor="t">닭</ShopBtn>
+      <Grid margin="0 auto">
+        {pork && !beef && !kfc ? (
+          <Grid>
+            <Banner style={{ backgroundImage: `url(${banner_pork})` }} />
+          </Grid>
+        ) : (
+          ""
+        )}
+        {beef && !pork && !kfc ? (
+          <Grid>
+            <Banner style={{ backgroundImage: `url(${banner_beef})` }} />
+          </Grid>
+        ) : (
+          ""
+        )}
+        {kfc && !beef && !pork ? (
+          <Grid>
+            <Banner style={{ backgroundImage: `url(${banner_kfc})` }} />
+          </Grid>
+        ) : (
+          ""
+        )}
+      </Grid>
+
+      <Grid is_flex2 wrap="true" margin="5rem auto 0 auto">
+        <ShopBtn cursor="t" value="pork" onClick={changePork}>
+          돼지
+        </ShopBtn>
+
+        <ShopBtn cursor="t" value="beef" onClick={changeBeef}>
+          소
+        </ShopBtn>
+        <ShopBtn cursor="t" value="kfc" onClick={changeKfc}>
+          닭
+        </ShopBtn>
       </Grid>
 
       <Grid is_flex2 wrap="true" margin="3rem auto 0 auto">
@@ -59,6 +116,8 @@ const Shopping = (props) => {
   );
 };
 
+Shopping.defaultProps = {};
+
 const ShopBtn = styled.button`
   width: 14.3rem;
   height: 5.6rem;
@@ -76,6 +135,12 @@ const ShopBtn = styled.button`
     color: white;
     font-weight: 700;
   }
+`;
+
+const Banner = styled.div`
+  padding-top: 40%;
+  background-position: 50%;
+  background-size: cover;
 `;
 
 export default Shopping;
