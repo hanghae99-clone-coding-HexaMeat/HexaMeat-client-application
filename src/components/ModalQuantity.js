@@ -11,9 +11,9 @@ const ModalQuantity = (props) => {
 
   const addQ = () => {
     setQNum(qnum + 1);
-    if (qnum === 20) {
-      setQNum(20);
-      window.alert("주문은 20개까지만 가능합니다.");
+    if (qnum === 100) {
+      setQNum(100);
+      window.alert("수량은 100까지만 설정 가능합니다.");
       return;
     }
     sendQuantity(qnum + 1);
@@ -29,7 +29,6 @@ const ModalQuantity = (props) => {
     sendQuantity(qnum - 1);
   };
 
-  console.log(qnum);
   return (
     <div className="container">
       <div className="menu-container">

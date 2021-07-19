@@ -17,10 +17,11 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 const PostList = (props) => {
   const dispatch = useDispatch();
-
+  const post_list = useSelector((state) => state.post.list);
+  
   React.useEffect(() => {
-    // dispatch(postActions.getPostAX());
-  },[]);
+    dispatch(postActions.getPostAX());
+  }, []);
 
   return (
     <Grid margin="0 auto">
@@ -56,13 +57,12 @@ const PostList = (props) => {
         </h5>
       </Grid>
       <Grid is_flex2 wrap="true" margin="3rem auto 0 auto">
-        {/* map돌릴때 props 넘겨주고 Post페이지에서 id로 가지고 놀자! */}
-        <Post {...props} />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {post_list.map((p, idx) => {
+          if (p.best) {
+            return <Post {...p} key={p.id} />;
+          }
+          return null;
+        })}
       </Grid>
       <Grid padding="3rem 14rem 15rem 12rem">
         <Main4 />

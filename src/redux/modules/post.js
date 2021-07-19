@@ -22,32 +22,62 @@ const getPostAX = () => {
       "Access-Control-Allow-Origin": "*",
     };
     axios
-      .get(
-        "http://54.180.152.35/products",
-        { headers: headers }
-      )
+      .get("http://54.180.152.35/products", { headers: headers })
       .then((res) => {
         let post_list = [];
-        res.forEach((p) => {
+        console.log(res);
+        console.log(res.data.result);
+        res.data.result.forEach((p) => {
           let post = {
             title: p.title,
             price: p.price, // Int
             priceStandard: p.priceStandard,
-            img: p.img,
+            img: p.detailImage,
             productId: p.productId, // 고유값
             freeAnti: p.freeAntibiotic,
-            cartCount: p.cartCount,
+            category: p.category,
+            best: p.bestProduct,
+            option: p.productOption,
           };
           post_list.push(post);
         });
+        console.log(post_list);
         dispatch(setPost(post_list));
       });
   };
 };
 
-const getBestPost = () => {
-  return function (dispatch, getState, { history }) {};
-};
+// const getBestPostAX = () => {
+//   return function (dispatch, getState, { history }) {
+//     dispatch(loading(true));
+//     const headers = {
+//       //   "Content-Type": "multipart/form-data",
+//       "Content-Type": "application/json",
+//       "Access-Control-Allow-Origin": "*",
+//     };
+//     axios
+//       .get("http://54.180.152.35/products", { headers: headers })
+//       .then((res) => {
+//         let post_list = [];
+//         res.forEach((p) => {
+//           let post = {
+//             title: p.title,
+//             price: p.price, // Int
+//             priceStandard: p.priceStandard,
+//             img: p.detailImage,
+//             productId: p.productId, // 고유값
+//             freeAnti: p.freeAntibiotic,
+//             cartCount: p.cartCount,
+//             category: p.category,
+//             best: p.bestProduct,
+//             option: p.productOption,
+//           };
+//           post_list.push(post);
+//         });
+//         dispatch(setPost(post_list));
+//       });
+//   };
+// };
 
 export default handleActions(
   {

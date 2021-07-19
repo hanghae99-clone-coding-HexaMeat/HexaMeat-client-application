@@ -1,18 +1,15 @@
 import React from "react";
-import "./style2.css";
+import "./modalstyle.css";
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { Button, Text, Grid } from "../elements";
 
 const ModalDropDown = (props) => {
-  React.useEffect(() => {
-    sendOption(btnname);
-  })
   const dropdownRef = React.useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
-
-  const firstdiv = "보통(16mm)";
-  const [btnname, setBtnName] = React.useState(firstdiv);
+  console.log(props);
+  const firstbtn = props.option[0];
+  const [btnname, setBtnName] = React.useState(firstbtn);
 
   const chooseOption = (event) => {
     setBtnName(event.target.innerText);
@@ -23,6 +20,9 @@ const ModalDropDown = (props) => {
     props.getOption(option);
   };
 
+  React.useEffect(() => {
+    sendOption(btnname);
+  });
   return (
     <div className="container">
       <div className="menu-container">
@@ -72,52 +72,30 @@ const ModalDropDown = (props) => {
           ref={dropdownRef}
           className={`menu ${isActive ? "active" : "inactive"}`}
           style={{
-            width: "37rem",
+            width: "36.9rem",
             backgroundColor: "white",
             cursor: "pointer",
             zIndex: "1",
-            margin: "0 0.1rem 0 0",
             borderRadius: "none",
+            top: "4.9rem",
           }}
         >
-          <Grid bg="white" minHeight="10rem" margin="2rem 0 1rem 0">
-            <Grid height="3rem">
+          {props.option.map((option, idx) => {
+            return (
               <Text
                 size="1.6rem"
                 color="#212121"
                 bold2="600"
                 text_align="center"
+                margin="1.6rem 0 1.6rem 0.9rem"
                 cursor="t"
                 _onClick={chooseOption}
+                key={option.idx}
               >
-                보통(16mm)
+                {option}
               </Text>
-            </Grid>
-            <Grid height="3rem">
-              <Text
-                size="1.6rem"
-                color="#212121"
-                bold2="600"
-                text_align="center"
-                cursor="t"
-                _onClick={chooseOption}
-              >
-                얇게(11mm)
-              </Text>
-            </Grid>
-            <Grid height="3rem">
-              <Text
-                size="1.6rem"
-                color="#212121"
-                bold2="600"
-                text_align="center"
-                cursor="t"
-                _onClick={chooseOption}
-              >
-                두껍(24mm)
-              </Text>
-            </Grid>
-          </Grid>
+            );
+          })}
         </nav>
       </div>
     </div>

@@ -5,26 +5,28 @@ import ModalDropDown from "./ModalDropDown";
 import ModalQuantity from "./ModalQuantity";
 
 import { Grid, Text, Button } from "../elements";
+import { priceCheck } from "../shared/pricecheck";
 
 const ModalPage = (props) => {
-  const totalPrice = 16800;
-
+  console.log(props);
   const [quantity, setQuantity] = React.useState(1);
   const getQuantity = (qnum) => {
     setQuantity(qnum);
   };
-
+  
   const [option, setOption] = React.useState("");
   const getOption = (op) => {
     setOption(op);
   };
 
+  const totalPrice = props.price * parseInt(quantity);
+  
   return (
     <React.Fragment>
       <Grid height="34rem">
         <Grid width="37rem" height="" margin="0 auto 0 auto">
           <Text color="black" size="2.5rem" bold2="900" text_align="center">
-            초신선 돼지 삼겹살 구이용
+            {props.title}
           </Text>
           <ModalQuantity getQuantity={getQuantity} />
         </Grid>
@@ -37,7 +39,7 @@ const ModalPage = (props) => {
           >
             옵션선택
           </Text>
-          <ModalDropDown getOption={getOption} />
+          <ModalDropDown getOption={getOption} {...props}/>
         </Grid>
         <Grid height="6rem" margin="3.4rem 0 0 0">
           <Text
@@ -46,7 +48,7 @@ const ModalPage = (props) => {
             is_float="right"
             margin="2.5rem 6.4rem 2.5rem 0"
           >
-            {totalPrice * quantity}원
+            {priceCheck(totalPrice)}원
           </Text>
         </Grid>
         <Grid is_flex2 width="100%" height="6rem">
