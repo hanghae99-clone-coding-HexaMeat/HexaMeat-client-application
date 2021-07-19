@@ -22,7 +22,6 @@ const Cart = (props) => {
           장바구니
         </h5>
       </Grid>
-
       <Grid is_flex2>
         {/* L그리드 전체 */}
         <Grid width="86rem" height="20.4rem" bg="yellow" margin="5.1rem 0 0 0">

@@ -116,6 +116,8 @@ const Shopping = (props) => {
   );
 };
 
+Shopping.defaultProps = {};
+
 const ShopBtn = styled.button`
   width: 14.3rem;
   height: 5.6rem;
@@ -134,8 +136,6 @@ const ShopBtn = styled.button`
     font-weight: 700;
   }
 `;
-
-Shopping.defaultProps = {};
 
 const Banner = styled.div`
   padding-top: 40%;
