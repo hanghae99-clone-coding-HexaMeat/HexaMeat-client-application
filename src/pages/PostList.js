@@ -11,8 +11,17 @@ import Post from "../components/Post";
 import Copyright from "../components/Copyright";
 
 import { Grid, Text, Image } from "../elements";
+import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const PostList = (props) => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    // dispatch(postActions.getPostAX());
+  },[]);
+
   return (
     <Grid margin="0 auto">
       <Grid>

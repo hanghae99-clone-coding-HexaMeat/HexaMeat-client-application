@@ -24,20 +24,21 @@ const getPostAX = () => {
     axios
       .get(
         "http://54.180.152.35/products",
-        {},
         { headers: headers }
       )
-      .then((result) => {
+      .then((res) => {
         let post_list = [];
-        result.forEach((p) => {
-          let product = {
-            pid: p.pid,
+        res.forEach((p) => {
+          let post = {
             title: p.title,
-            price: p.price,
-            subtext: p.subtext,
+            price: p.price, // Int
+            priceStandard: p.priceStandard,
             img: p.img,
+            productId: p.productId, // 고유값
+            freeAnti: p.freeAntibiotic,
+            cartCount: p.cartCount,
           };
-          post_list.push(product);
+          post_list.push(post);
         });
         dispatch(setPost(post_list));
       });

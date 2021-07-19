@@ -45,9 +45,10 @@ const loginAX = (id, pwd) => {
         { headers: headers }
       )
       .then((res) => {
+        console.log(res);
         if (res.status === 200) {
           let token = res.data.token;
-          let userId = res.config.data.id;
+          // let userId = res.config.data.id;
 
           sessionStorage.setItem("token", token);
           dispatch(
@@ -108,7 +109,6 @@ const signupAX = (id, pwd, pwdCheck, nickname) => {
   };
 };
 
-// 로그인했는 지 아닌 지 체크, 만약 파이어베이스에 로그인한 상태라면? 리덕스에도 유저 정보를 넣어줍니다.
 const isLogin = () => {
   return function (dispatch, getState, { history }) {
     const token = sessionStorage.getItem("token");
