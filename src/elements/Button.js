@@ -17,6 +17,7 @@ const Button = (props) => {
     cursor,
     border,
     ctg,
+    bold,
   } = props;
 
   const styles = {
@@ -32,6 +33,7 @@ const Button = (props) => {
     cursor: cursor,
     border: border,
     ctg: ctg,
+    bold: bold,
   };
 
   return (
@@ -51,30 +53,31 @@ Button.defaultProps = {
   height: "100%",
   size: "",
   padding: false,
-  bg: false,
+  bg: "",
   color: "",
   radius: "",
   shadow: false,
   cursor: "",
   border: "",
   ctg: "",
+  bold: "",
 };
 
 const ElButton = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  ${(props) => (props.size ? `font-size: ${props.size}` : "")}
+  ${(props) => (props.size ? `font-size: ${props.size};` : "")}
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
   ${(props) => (props.color ? `color: ${props.color};` : "")}
   box-sizing: border-box;
-  border: none;
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) =>
     props.shadow ? `box-shadow: 0.5rem 0.5rem 0.5rem #dcdde1;` : ""}
   ${(props) => (props.cursor ? `cursor: pointer;` : "")};
-  ${(props) => (props.border ? `border: ${props.border}` : "")}
+  ${(props) => (props.border ? `border: ${props.border};` : "")}
+  ${(props) => (props.bold ? `font-weight: ${props.bold};` : "")}
   ${(props) =>
     props.ctg
       ? `&:hover {

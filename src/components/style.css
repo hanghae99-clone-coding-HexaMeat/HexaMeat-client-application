@@ -45,7 +45,7 @@
   
   .menu {
     background: #ffffff;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     position: absolute;
     top: 60px;
     right: 0;

@@ -35,6 +35,7 @@ const Grid = (props) => {
     is_center,
     is_border,
     text_align,
+    updownborder,
   } = props;
 
   const styles = {
@@ -67,6 +68,7 @@ const Grid = (props) => {
     is_header: is_header,
     is_border: is_border,
     text_align: text_align,
+    updownborder: updownborder,
   };
 
   return (
@@ -111,6 +113,7 @@ Grid.defaultProps = {
   is_header: "",
   is_border: "",
   text_align: "",
+  updownborder: "",
 };
 
 const GridBox = styled.div`
@@ -127,7 +130,7 @@ const GridBox = styled.div`
 
   ${(props) =>
     props.borderBottom ? `border-bottom: ${props.borderBottom};` : ""}
-  ${(props) => (props.radius ? `border-radius: 0.5rem;` : "")}
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
   ${(props) =>
     props.shadow ? `box-shadow: 0.3rem 0.3rem 0.3rem #dcdde1;` : ""}
   ${(props) =>
@@ -147,9 +150,13 @@ const GridBox = styled.div`
   ${(props) =>
     props.card_flex ? `display: flex; justify-content: center;` : ""}
   ${(props) => (props.wrap ? `flex-wrap: wrap;` : "")}
-  ${(props) =>
-    props.border ? `border-radius: 0.4rem; border: 1px solid #718093;` : ""}
+  ${(props) => (props.border ? `border: ${props.border};` : "")}
   ${(props) => (props.is_border ? `border: ${props.is_border};` : "")}
+  ${(props) =>
+    props.updownborder
+      ? `border-top: ${props.updownborder}; border-bottom: ${props.updownborder}`
+      : ""}
+
   ${(props) =>
     props.is_header ? `position: sticky; top: 0; z-index: 10;` : ""};
   ${(props) => (props.is_float ? `float: ${props.is_float}; ` : "")}

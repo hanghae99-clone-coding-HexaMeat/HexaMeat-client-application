@@ -1,32 +1,37 @@
 import React from "react";
-import "./style.css";
+import "./modalstyle.css";
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { Button, Text, Grid } from "../elements";
 
-const DropDown = (props) => {
+const ModalDropDown = (props) => {
   const dropdownRef = React.useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
-
-  const firstdiv = "보통(16mm)";
-  const [btnname, setBtnName] = React.useState(firstdiv);
+  console.log(props);
+  const firstbtn = props.option[0];
+  const [btnname, setBtnName] = React.useState(firstbtn);
 
   const chooseOption = (event) => {
     setBtnName(event.target.innerText);
     setIsActive(null);
   };
-  console.log(btnname);
-  // DB목록에서 옵션 대신 btnname
 
+  const sendOption = (option) => {
+    props.getOption(option);
+  };
+
+  React.useEffect(() => {
+    sendOption(btnname);
+  });
   return (
     <div className="container">
       <div className="menu-container">
         <Grid is_flex2>
           <Button
-            width="31.7rem"
+            width="36.9rem"
             height="5rem"
             border="0.1rem solid gray"
-            bg="#1c1c1c"
+            bg="white"
             _onClick={onClick}
             className="menu-trigger"
             cursor="t"
@@ -34,7 +39,7 @@ const DropDown = (props) => {
             <Grid is_flex2>
               <Text
                 size="1.6rem"
-                color="white"
+                color="#212121"
                 text_align="center"
                 margin="1rem 0 1rem 8rem"
                 bold2="600"
@@ -49,7 +54,16 @@ const DropDown = (props) => {
                   padding: "0 0 0 7rem",
                 }}
               >
-                <span class="material-icons" style={{color: "gray"}}>expand_more</span>
+                <span
+                  className="material-icons"
+                  style={{
+                    fontSize: "3rem",
+                    color: "gray",
+                    margin: "0.2rem 0 0 2.5rem",
+                  }}
+                >
+                  expand_more
+                </span>
               </div>
             </Grid>
           </Button>
@@ -57,52 +71,35 @@ const DropDown = (props) => {
         <nav
           ref={dropdownRef}
           className={`menu ${isActive ? "active" : "inactive"}`}
-          style={{ width: "100%", backgroundColor: "#1c1c1c", cursor: "pointer", zIndex: "1"}}
+          style={{
+            width: "36.9rem",
+            backgroundColor: "white",
+            cursor: "pointer",
+            zIndex: "1",
+            borderRadius: "none",
+            top: "4.9rem",
+          }}
         >
-          <Grid bg="#1c1c1c" minHeight="10rem" margin="2rem 0">
-            <Grid height="3rem">
+          {props.option.map((option, idx) => {
+            return (
               <Text
                 size="1.6rem"
-                color="white"
-                bold2="900"
+                color="#212121"
+                bold2="600"
                 text_align="center"
+                margin="1.6rem 0 1.6rem 0.9rem"
                 cursor="t"
                 _onClick={chooseOption}
+                key={option.idx}
               >
-                {props.name}
+                {option}
               </Text>
-            </Grid>
-            <Grid height="3rem">
-              <Text
-                size="1.6rem"
-                color="white"
-                bold2="900"
-                text_align="center"
-                cursor="t"
-                _onClick={chooseOption}
-              >
-                얇게(11mm)
-              </Text>
-            </Grid>
-            <Grid height="3rem">
-              <Text
-                size="1.6rem"
-                color="white"
-                bold2="900"
-                text_align="center"
-                cursor="t"
-                _onClick={chooseOption}
-              >
-                두껍(24mm)
-              </Text>
-            </Grid>
-          </Grid>
+            );
+          })}
         </nav>
       </div>
     </div>
   );
 };
-DropDown.defaultProps = {
-  name: "보통(16mm)",
-};
-export default DropDown;
+
+export default ModalDropDown;
