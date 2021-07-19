@@ -1,13 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 
+import Modal from "./Modal";
+import ModalPage from "./ModalPage";
+
 import BtnCard from "../shared/img/BtnCard.png";
 import { Grid, Image, Text, Button } from "../elements";
 import { history } from "../redux/configureStore";
 
 const Post = (props) => {
+  const [isHover, setIsHover] = React.useState(false);
+  const chgBtnColor = () => {
+    setIsHover(true);
+  };
+  const chgBtnColor2 = () => {
+    setIsHover(false);
+  };
+
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
-    <div style={{marginBottom: "6rem"}}>
+    <div style={{ marginBottom: "6rem" }}>
       <Grid
         width="37.6rem"
         height="42rem" // 임시
@@ -22,23 +41,75 @@ const Post = (props) => {
           cursor="t"
           margin="7rem 5rem 0 5rem"
           _onClick={() => {
-            history.push(`/post/${props.id}`);
+            // history.push(`/post/${props.id}`);
+            window.alert("미구현!");
           }}
         />
-        <CartBtn>
-          <img
-            alt="cart_btn"
-            src={BtnCard}
-            style={{
-              objectFit: "cover",
-              width: "3.5rem",
-              height: "3.5rem",
-              padding: "0.3rem 0.3rem 0 0",
-            }}
-          />
-        </CartBtn>
+
+        {isHover ? (
+          <>
+            <CartBtn
+              style={{ backgroundColor: "black" }}
+              onClick={openModal}
+              onMouseEnter={chgBtnColor}
+              onMouseLeave={chgBtnColor2}
+            >
+              <span
+                className="material-icons-outlined"
+                style={{
+                  color: "white",
+                  width: "3.5rem",
+                  height: "3.5rem",
+                  fontSize: "3.5rem",
+                }}
+              >
+                shopping_cart
+              </span>
+            </CartBtn>
+            {modalVisible && (
+              <Modal
+                visible={modalVisible}
+                closable={true}
+                maskClosable={true}
+                onClose={closeModal}
+              >
+                <ModalPage/>
+              </Modal>
+            )}
+          </>
+        ) : (
+          <>
+            <CartBtn
+              onClick={openModal}
+              onMouseEnter={chgBtnColor}
+              onMouseLeave={chgBtnColor2}
+            >
+              <span
+                className="material-icons-outlined"
+                style={{
+                  color: "black",
+                  width: "3.5rem",
+                  height: "3.5rem",
+                  fontSize: "3.5rem",
+                }}
+              >
+                shopping_cart
+              </span>
+            </CartBtn>
+            {modalVisible && (
+              <Modal
+                visible={modalVisible}
+                closable={true}
+                maskClosable={true}
+                onClose={closeModal}
+              >
+                <ModalPage/>
+              </Modal>
+            )}
+          </>
+        )}
       </Grid>
-      
+
       <Grid maxWidth="37.6rem">
         <Text bold2="900" size="2rem" margin="1.6rem 0 0 0" cursor="t">
           초신선 상품 이름 자리
@@ -65,6 +136,7 @@ Post.defaultProps = {
   comment_cnt: 0,
   insert_dt: "2021-02-27 10:00:00",
   is_me: true,
+  isHover: "",
 };
 
 const CartBtn = styled.button`
