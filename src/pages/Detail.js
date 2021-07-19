@@ -67,7 +67,7 @@ const Detail = (props) => {
             >
               수량
             </Text>
-            <Quantity/>
+            <Quantity />
           </Grid>
         </Grid>
       </Grid>
