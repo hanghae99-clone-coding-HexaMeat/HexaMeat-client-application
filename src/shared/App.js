@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import PostList from "../pages/PostList";
-import Detail from "../components/Detail";
+import Detail from "../pages/Detail";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Header from "../components/Header";
@@ -11,8 +11,8 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 
 import { Grid } from "../elements";
-import Shopping from "../components/Shopping";
-import Cart from "../components/Cart";
+import Shopping from "../pages/Shopping";
+import Cart from "../pages/Cart";
 
 function App() {
   return (

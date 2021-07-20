@@ -12,12 +12,39 @@ import DetailExp2 from "../shared/img/DetailExp2.png";
 import DetailExp3 from "../shared/img/DetailExp3.png";
 
 import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Detail = (props) => {
+  const dispatch = useDispatch();
+  const id = props.match.params.id;
+  const post_list = useSelector((state) => state.post.list);
+  const post_idx = post_list.findIndex((p) => p.id === id);
+  const post = post_list[post_idx];
+  console.log(post_list);
+  console.log(props);
+
+  // console.log(post_list[0].id);
+  console.log(post_idx);
+  console.log(post);
+  const [quantity, setQuantity] = React.useState(1);
+  const getQuantity = (qnum) => {
+    setQuantity(qnum);
+  };
+
+  const [option, setOption] = React.useState("");
+  const getOption = (op) => {
+    setOption(op);
+  };
+
+  React.useEffect(() => {
+    dispatch(postActions.getPostAX());
+  }, []);
+
   return (
     <Grid>
-      <Grid bg="#1c1c1c">
-        <Grid is_flex2 padding="0 9rem 0 0">
+      <Grid bg="#1c1c1c" width="" height="">
+        <Grid is_flex2 padding="8rem 14rem 0rem 9rem">
           <Grid
             width="60rem"
             height="60rem" // 임시
@@ -25,23 +52,19 @@ const Detail = (props) => {
             padding="1rem 1rem 0rem 1rem"
           >
             <MainPic
-              src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"
-              cursor="t"
+              src={post?.img[0]}
               margin="7rem 5rem 0 5rem"
-              _onClick={() => {
-                history.push(`/post/${props.id}`);
-              }}
             />
           </Grid>
           <Grid width="37.6rem">
             <Text color="white" size="3rem" bold2="900">
-              초신선 돼지 삼겹살 구이용
+              {post?.title}
             </Text>
             <Text color="#9b9b9b" size="1.6rem" margin="0">
-              100g당 2,800원
+              {option}
             </Text>
             <Text color="white" size="2.4rem" margin="0.6rem 0 0 0" bold2="600">
-              기준가 16,800원 (600g)
+              {post?.priceStandard}
             </Text>
             <hr
               style={{
@@ -62,7 +85,7 @@ const Detail = (props) => {
               >
                 옵션
               </Text>
-              <DropDown />
+              <DropDown getOption={getOption} {...post} />
             </Grid>
             <Grid height="5.2rem" margin="2.9rem 0 0 0">
               <Text
@@ -74,7 +97,7 @@ const Detail = (props) => {
               >
                 수량
               </Text>
-              <Quantity />
+              <Quantity getQuantity={getQuantity} />
             </Grid>
             <Grid is_flex2 margin="4rem 0 0 0">
               <Button

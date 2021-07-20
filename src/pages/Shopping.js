@@ -2,16 +2,24 @@
 import React from "react";
 import styled from "styled-components";
 
-import BtnCard from "../shared/img/BtnCard.png";
 import { Grid, Image, Text, Button } from "../elements";
+
 import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
+
 import Post from "../components/Post";
+import Copyright from "../components/Copyright";
 
 import banner_pork from "../shared/img/banner_pork.png";
 import banner_beef from "../shared/img/banner_beef.png";
 import banner_kfc from "../shared/img/banner_kfc.png";
+import BtnCard from "../shared/img/BtnCard.png";
 
 const Shopping = (props) => {
+  const dispatch = useDispatch();
+  const post_list = useSelector((state) => state.post.list);
+
   const [pork, setPork] = React.useState(true);
   const [beef, setBeef] = React.useState(false);
   const [kfc, setKfc] = React.useState(false);
@@ -33,6 +41,9 @@ const Shopping = (props) => {
     setBeef(false);
   };
 
+  React.useEffect(() => {
+    dispatch(postActions.getPostAX());
+  }, []);
   return (
     <div style={{ marginBottom: "6rem" }}>
       <Grid margin="0 auto">
@@ -59,11 +70,10 @@ const Shopping = (props) => {
         )}
       </Grid>
 
-      <Grid is_flex2 wrap="true" margin="5rem auto 0 auto">
+      <Grid is_flex2 wrap="true" margin="7.2rem auto 0 auto">
         <ShopBtn cursor="t" value="pork" onClick={changePork}>
           돼지
         </ShopBtn>
-
         <ShopBtn cursor="t" value="beef" onClick={changeBeef}>
           소
         </ShopBtn>
@@ -73,45 +83,32 @@ const Shopping = (props) => {
       </Grid>
 
       <Grid is_flex2 wrap="true" margin="3rem auto 0 auto">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {pork && !beef && !kfc
+          ? post_list.map((p, idx) => {
+              if (p.category === "돼지") {
+                return <Post {...p} key={p.id} />;
+              }
+              return null;
+            })
+          : ""}
+          {!pork && beef && !kfc
+          ? post_list.map((p, idx) => {
+              if (p.category === "소") {
+                return <Post {...p} key={p.id} />;
+              }
+              return null;
+            })
+          : ""}
+          {!pork && !beef && kfc
+          ? post_list.map((p, idx) => {
+              if (p.category === "닭") {
+                return <Post {...p} key={p.id} />;
+              }
+              return null;
+            })
+          : ""}
       </Grid>
-      <hr />
-      <Grid>
-        <Grid margin="3rem 12rem 3rem 12rem">
-          <Text bold2="900" size="1.5rem" cursor>
-            <span style={{ fontWeight: "400", margin: "0 2.5rem 0 0" }}>
-              이용약관
-            </span>
-            개인정보처리방침
-          </Text>
-        </Grid>
-
-        <Grid is_flex margin="3rem 12rem 3rem 12rem">
-          <Grid is_float="left">
-            <Text>
-              (주)정육각 대표이사: 김재연 | 주소: 경기도 김포시 고촌읍
-              아라육로57번길 126
-            </Text>
-            <Text>
-              사업자등록번호: 224-87-00271 | 통신판매업신고번호:
-              2021-경기김포-0668
-            </Text>
-            <Text>개인정보관리책임자: 박준태(privacy@yookgak.com)</Text>
-          </Grid>
-          <Grid is_float="right">
-            <Text>고객센터</Text>
-            <Text>1800-0658</Text>
-            <span>평일: 08:30 - 17:30</span>
-            <span>점심: 12:30 - 13:30</span>
-            <span>(토, 일 및 공휴일 휴무)</span>
-          </Grid>
-        </Grid>
-      </Grid>
+      <Copyright margin="15rem 0 0 0"/>
     </div>
   );
 };
