@@ -36,14 +36,13 @@ const Post = (props) => {
         padding="1rem 1rem 0rem 1rem"
         shadow
       >
-
         <Image
           shape="rectangle"
-          src={props.img[0]}
+          // src={props?.img[0]}
           cursor="t"
           margin="7rem 5rem 0 5rem"
           _onClick={() => {
-            // history.push(`/posts/${props.id}`);
+            history.push(`/posts/${props.id}`);
           }}
         />
 
@@ -74,7 +73,7 @@ const Post = (props) => {
                 maskClosable={true}
                 onClose={closeModal}
               >
-                <ModalPage {...props}/>
+                <ModalPage {...props} />
               </Modal>
             )}
           </>
@@ -104,7 +103,7 @@ const Post = (props) => {
                 maskClosable={true}
                 onClose={closeModal}
               >
-                <ModalPage {...props}/>
+                <ModalPage {...props} />
               </Modal>
             )}
           </>
