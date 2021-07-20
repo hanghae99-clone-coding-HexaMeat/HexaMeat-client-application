@@ -10,14 +10,13 @@ import { history } from "../redux/configureStore";
 
 const Post = (props) => {
   const [isHover, setIsHover] = React.useState(false);
-
   const chgBtnColor = () => {
     setIsHover(true);
   };
   const chgBtnColor2 = () => {
     setIsHover(false);
   };
-
+  console.log(props);
   const [modalVisible, setModalVisible] = React.useState(false);
   const openModal = () => {
     setModalVisible(true);
@@ -36,14 +35,13 @@ const Post = (props) => {
         padding="1rem 1rem 0rem 1rem"
         shadow
       >
-
         <Image
           shape="rectangle"
           src={props.img[0]}
           cursor="t"
           margin="7rem 5rem 0 5rem"
           _onClick={() => {
-            // history.push(`/posts/${props.id}`);
+            history.push(`/posts/${props.id}`);
           }}
         />
 
@@ -74,7 +72,7 @@ const Post = (props) => {
                 maskClosable={true}
                 onClose={closeModal}
               >
-                <ModalPage {...props}/>
+                <ModalPage {...props} />
               </Modal>
             )}
           </>
@@ -104,7 +102,7 @@ const Post = (props) => {
                 maskClosable={true}
                 onClose={closeModal}
               >
-                <ModalPage {...props}/>
+                <ModalPage {...props} />
               </Modal>
             )}
           </>
@@ -112,12 +110,12 @@ const Post = (props) => {
       </Grid>
 
       <Grid maxWidth="37.6rem">
-        <Text bold2="900" size="2rem" margin="1.6rem 0 0 0" cursor="t">
+        <Text bold2="900" size="1.8rem" margin="1.6rem 0 0 0" cursor="t">
           {props.title}
         </Text>
       </Grid>
       <Grid maxWidth="37.6rem">
-        <Text color="#9b9b9b" size="1.7rem" margin="0" cursor="t">
+        <Text color="#9b9b9b" bold2="600" size="1.65rem" margin="0" cursor="t">
           {props.priceStandard}
         </Text>
       </Grid>

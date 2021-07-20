@@ -5,22 +5,30 @@ import { Grid, Button, Text } from "../elements";
 
 const Quantity = (props) => {
   const [qnum, setQNum] = React.useState(1);
+  const sendQuantity = (qnum) => {
+    props.getQuantity(qnum);
+  };
 
   const addQ = () => {
     setQNum(qnum + 1);
     if(qnum === 20){
       setQNum(20);
       window.alert("주문은 20개까지만 가능합니다.");
+      return;
     }
+    sendQuantity(qnum + 1);
   };
+
   const minusQ = () => {
     setQNum(qnum - 1);
     if (qnum === 1) {
       setQNum(1);
       window.alert("최소 수량은 1개입니다.");
+      return;
     }
+    sendQuantity(qnum - 1);
   };
-  console.log(qnum);
+
   return (
     <div className="container">
       <div className="menu-container">
@@ -44,7 +52,7 @@ const Quantity = (props) => {
               _onClick={minusQ}
             >
               <span
-                class="material-icons"
+                className="material-icons"
                 style={{
                   color: "gray",
                   fontSize: "3rem",
@@ -73,7 +81,7 @@ const Quantity = (props) => {
               _onClick={addQ}
             >
               <span
-                class="material-icons"
+                className="material-icons"
                 style={{
                   color: "gray",
                   fontSize: "3rem",

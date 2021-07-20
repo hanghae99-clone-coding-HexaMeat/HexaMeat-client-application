@@ -15,10 +15,10 @@ const ModalPage = (props) => {
   };
   
   const [option, setOption] = React.useState("");
-  const getOption = (op) => {
-    setOption(op);
+  const getOption = (option) => {
+    setOption(option);
   };
-
+  console.log(option);
   const totalPrice = props.price * parseInt(quantity);
   
   return (

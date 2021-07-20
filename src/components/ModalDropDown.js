@@ -22,7 +22,7 @@ const ModalDropDown = (props) => {
 
   React.useEffect(() => {
     sendOption(btnname);
-  });
+  },[]);
   return (
     <div className="container">
       <div className="menu-container">
@@ -90,7 +90,7 @@ const ModalDropDown = (props) => {
                 margin="1.6rem 0 1.6rem 0.9rem"
                 cursor="t"
                 _onClick={chooseOption}
-                key={option.idx}
+                key={props.id}
               >
                 {option}
               </Text>

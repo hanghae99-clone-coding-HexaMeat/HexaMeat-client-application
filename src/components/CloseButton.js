@@ -8,7 +8,7 @@ const CloseButton = (props) => {
   return (
     <React.Fragment>
       <ElButton onClick={_onClick}>
-        <span class="material-icons-outlined" style={{ fontSize: "3.5rem" }}>
+        <span className="material-icons-outlined" style={{ fontSize: "3.5rem" }}>
           close
         </span>
       </ElButton>

@@ -52,7 +52,7 @@ const ModalQuantity = (props) => {
               _onClick={minusQ}
             >
               <span
-                class="material-icons"
+                className="material-icons"
                 style={{
                   color: "gray",
                   fontSize: "3rem",
@@ -81,7 +81,7 @@ const ModalQuantity = (props) => {
               _onClick={addQ}
             >
               <span
-                class="material-icons"
+                className="material-icons"
                 style={{
                   color: "gray",
                   fontSize: "3rem",

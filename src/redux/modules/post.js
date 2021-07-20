@@ -25,10 +25,11 @@ const getPostAX = () => {
       .get("http://54.180.152.35/products", { headers: headers })
       .then((res) => {
         let post_list = [];
-        console.log(res);
-        console.log(res.data.result);
+        
         res.data.result.forEach((p) => {
+          console.log(res);
           let post = {
+            id: p.id,
             title: p.title,
             price: p.price, // Int
             priceStandard: p.priceStandard,
