@@ -22,11 +22,10 @@ function App() {
           <Header></Header>
           <Route path="/" exact component={PostList} />
           <Route path="/posts" exact component={Shopping} />
-          <Route path="/posts/:id" exact component={Detail}/>
-          <Route path="/login" exacrt component={Login}/>
-          <Route path="/signup" exacrt component={Signup}/>
+          <Route path="/posts/:id" exact component={Detail} />
+          <Route path="/login" exacrt component={Login} />
+          <Route path="/signup" exacrt component={Signup} />
           <Route path="/cart" exact component={Cart} />
-
         </ConnectedRouter>
       </Grid>
     </React.Fragment>

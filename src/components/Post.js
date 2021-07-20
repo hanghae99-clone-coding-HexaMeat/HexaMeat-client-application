@@ -37,7 +37,7 @@ const Post = (props) => {
       >
         <Image
           shape="rectangle"
-          src={props.img[0]}
+          // src={props?.img[0]}
           cursor="t"
           margin="7rem 5rem 0 5rem"
           _onClick={() => {

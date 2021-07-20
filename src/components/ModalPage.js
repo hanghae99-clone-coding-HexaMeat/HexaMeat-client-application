@@ -13,14 +13,14 @@ const ModalPage = (props) => {
   const getQuantity = (qnum) => {
     setQuantity(qnum);
   };
-  
+
   const [option, setOption] = React.useState("");
   const getOption = (option) => {
     setOption(option);
   };
   console.log(option);
   const totalPrice = props.price * parseInt(quantity);
-  
+
   return (
     <React.Fragment>
       <Grid height="34rem">
@@ -39,7 +39,7 @@ const ModalPage = (props) => {
           >
             옵션선택
           </Text>
-          <ModalDropDown getOption={getOption} {...props}/>
+          <ModalDropDown getOption={getOption} {...props} />
         </Grid>
         <Grid height="6rem" margin="3.4rem 0 0 0">
           <Text
