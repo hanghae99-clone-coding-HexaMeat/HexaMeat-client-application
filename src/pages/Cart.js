@@ -83,7 +83,7 @@ const Cart = (props) => {
             </Grid>
 
             <Grid is_flex2 height="2rem" margin="2.5rem 0 0 25rem">
-              <Text color="#9b9b9b" size="1.4rem" margin="0 2rem 0 0">
+              <Text color="#9b9b9b" size="3.4rem" margin="0 2rem 0 0">
                 600g 기준
               </Text>
 
