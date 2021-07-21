@@ -4,29 +4,24 @@ import styled from "styled-components";
 import { Grid, Button, Text } from "../elements";
 
 const ModalQuantity = (props) => {
-  const [qnum, setQNum] = React.useState(1);
-  const sendQuantity = (qnum) => {
-    props.getQuantity(qnum);
-  };
+  const quantity = props?.quantity;
 
   const addQ = () => {
-    setQNum(qnum + 1);
-    if (qnum === 100) {
-      setQNum(100);
+    props.getQuantity(quantity + 1);
+    if (quantity === 100) {
+      props.getQuantity(100);
       window.alert("수량은 100까지만 설정 가능합니다.");
       return;
     }
-    sendQuantity(qnum + 1);
   }
 
   const minusQ = () => {
-    setQNum(qnum - 1);
-    if (qnum === 1) {
-      setQNum(1);
+    props.getQuantity(quantity - 1);
+    if (quantity === 1) {
+      props.getQuantity(1);
       window.alert("최소 수량은 1개입니다.");
       return;
     }
-    sendQuantity(qnum - 1);
   };
 
   return (
@@ -69,7 +64,7 @@ const ModalQuantity = (props) => {
               text_align="center"
               //   margin="1rem 0 1rem 8rem"
             >
-              {qnum}
+              {props?.quantity}
             </Text>
             <Button
               width="5rem"

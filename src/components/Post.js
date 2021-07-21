@@ -16,7 +16,6 @@ const Post = (props) => {
   const chgBtnColor2 = () => {
     setIsHover(false);
   };
-  console.log(props);
   const [modalVisible, setModalVisible] = React.useState(false);
   const openModal = () => {
     setModalVisible(true);
@@ -37,7 +36,7 @@ const Post = (props) => {
       >
         <Image
           shape="rectangle"
-          // src={props?.img[0]}
+          src={props?.img[0]}
           cursor="t"
           margin="7rem 5rem 0 5rem"
           _onClick={() => {
@@ -110,12 +109,20 @@ const Post = (props) => {
       </Grid>
 
       <Grid maxWidth="37.6rem">
-        <Text bold2="900" size="1.8rem" margin="1.6rem 0 0 0" cursor="t">
+        <Text
+          bold2="900"
+          size="1.8rem"
+          margin="1.6rem 0 0 0"
+          cursor="t"
+          _onClick={() => {
+            history.push(`/posts/${props.id}`);
+          }}
+        >
           {props.title}
         </Text>
       </Grid>
       <Grid maxWidth="37.6rem">
-        <Text color="#9b9b9b" bold2="600" size="1.65rem" margin="0" cursor="t">
+        <Text color="#9b9b9b" bold2="600" size="1.65rem" margin="0">
           {props.priceStandard}
         </Text>
       </Grid>

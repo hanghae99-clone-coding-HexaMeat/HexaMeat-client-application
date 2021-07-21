@@ -18,6 +18,7 @@ const Button = (props) => {
     border,
     ctg,
     bold,
+    borderBottom
   } = props;
 
   const styles = {
@@ -34,6 +35,7 @@ const Button = (props) => {
     border: border,
     ctg: ctg,
     bold: bold,
+    borderBottom: borderBottom,
   };
 
   return (
@@ -61,6 +63,7 @@ Button.defaultProps = {
   border: "",
   ctg: "",
   bold: "",
+  borderBottom: "",
 };
 
 const ElButton = styled.button`
@@ -78,6 +81,7 @@ const ElButton = styled.button`
   ${(props) => (props.cursor ? `cursor: pointer;` : "")};
   ${(props) => (props.border ? `border: ${props.border};` : "")}
   ${(props) => (props.bold ? `font-weight: ${props.bold};` : "")}
+  ${(props) => (props.borderBottom ? `border-bottom: ${props.borderBottom};` : "")}
   ${(props) =>
     props.ctg
       ? `&:hover {

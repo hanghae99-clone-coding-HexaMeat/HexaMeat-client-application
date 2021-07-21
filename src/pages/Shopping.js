@@ -71,13 +71,13 @@ const Shopping = (props) => {
       </Grid>
 
       <Grid is_flex2 wrap="true" margin="7.2rem auto 0 auto">
-        <ShopBtn cursor="t" value="pork" onClick={changePork}>
+        <ShopBtn bg={pork? "#212121" : "#eee"} color={pork? "white" : "#212121"} cursor="t" value="pork" onClick={changePork}>
           돼지
         </ShopBtn>
-        <ShopBtn cursor="t" value="beef" onClick={changeBeef}>
+        <ShopBtn bg={beef? "#212121" : "#eee"} color={beef? "white" : "#212121"} cursor="t" value="beef" onClick={changeBeef}>
           소
         </ShopBtn>
-        <ShopBtn cursor="t" value="kfc" onClick={changeKfc}>
+        <ShopBtn bg={kfc? "#212121" : "#eee"} color={kfc? "white" : "#212121"} cursor="t" value="kfc" onClick={changeKfc}>
           닭
         </ShopBtn>
       </Grid>
@@ -123,7 +123,8 @@ const ShopBtn = styled.button`
   font-weight: 700;
   border: none;
   border-radius: 3%;
-  background-color: #eee;
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.bg};
   margin: 1rem 0.5rem 5rem 0.5rem;
   display: inline-block;
   cursor: pointer;

@@ -8,22 +8,13 @@ const DropDown = (props) => {
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
 
-  const firstbtn = props.option;
-  const [btnname, setBtnName] = React.useState(firstbtn[0]);
+  const option = props?.option[0];
 
   const chooseOption = (event) => {
-    setBtnName(event.target.innerText);
+    props.getOption(event.target.innerText);
     setIsActive(null);
   };
 
-  const sendOption = (option) => {
-    props.getOption(option);
-  };
-  console.log(btnname);
-
-  React.useEffect(() => {
-    sendOption(btnname);
-  });
   return (
     <div className="container">
       <div className="menu-container">
@@ -45,7 +36,7 @@ const DropDown = (props) => {
                 margin="1rem 0 1rem 8rem"
                 bold2="600"
               >
-                {btnname}
+                {props?.options}
               </Text>
               <div
                 style={{
@@ -72,24 +63,22 @@ const DropDown = (props) => {
             zIndex: "1",
           }}
         >
-          {props && props.option.length > 0
-            ? props.option.map((option, idx) => {
-                return (
-                  <Text
-                    size="1.6rem"
-                    color="white"
-                    bold2="600"
-                    text_align="center"
-                    margin="1.6rem 0 1.6rem 0.9rem"
-                    cursor="t"
-                    _onClick={chooseOption}
-                    key={props.id}
-                  >
-                    {option}
-                  </Text>
-                );
-              })
-            : ""}
+          {props?.option.map((option, idx) => {
+            return (
+              <Text
+                size="1.6rem"
+                color="white"
+                bold2="600"
+                text_align="center"
+                margin="1.6rem 0 1.6rem 0.9rem"
+                cursor="t"
+                _onClick={chooseOption}
+                key={idx}
+              >
+                {option}
+              </Text>
+            );
+          })}
         </nav>
       </div>
     </div>
@@ -97,6 +86,6 @@ const DropDown = (props) => {
 };
 
 DropDown.defaultProps = {
-  option: "",
+  option: ["1", "2", "3"], // 선택할 수 없음
 };
 export default DropDown;
