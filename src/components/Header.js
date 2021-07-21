@@ -13,33 +13,39 @@ const Header = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
 
   const logout = () => {
+    setShopping("");
     dispatch(userActions.logout());
   };
   
+  const [shopping, setShopping] = React.useState("쇼핑하기");
+
   React.useEffect(() => {
     dispatch(userActions.isLogin());
   }, []);
   return (
     <Div>
       <Div2>
-        <Grid is_flex width="118.4rem" margin="0 auto" padding="2.4rem 0 0 0">
+        <Grid is_flex width="118.4rem" margin="0 auto" padding="2rem 0 0 0">
           <Flex>
             <Logo
               onClick={() => {
+                setShopping("");
                 history.push("/");
               }}
             />
             <Button
               size="1.8rem"
-              width="8.6rem"
+              width="7.5rem"
               bold="700"
               bg="transparent"
               color="#fff"
               border="none"
-              padding="0 0.5rem 0 0.5rem"
-              margin="0 1.4rem 0 1.4rem"
+              // padding="0 0.5rem 0 0.5rem"
+              // margin="0 1.4rem 0 1.4rem"
               cursor="t"
+              borderBottom={shopping? "0.1rem solid white" : ""}
               _onClick={() => {
+                setShopping("쇼핑하기");
                 history.push("/posts");
               }}
             >
@@ -53,7 +59,7 @@ const Header = (props) => {
               color="#fff"
               border="none"
               padding="0 0.5rem 0 0.5rem"
-              margin="0 1.4rem 0 0"
+              margin="0 1.4rem 0 2.8rem"
               cursor="t"
             >
               이용가이드
@@ -136,6 +142,7 @@ const Header = (props) => {
                   margin="0 0 0 1rem"
                   cursor="t"
                   _onClick={() => {
+                    setShopping("");
                     history.push("/login");
                   }}
                 >
@@ -152,6 +159,7 @@ const Header = (props) => {
                   margin="0 1.5rem 0 0"
                   cursor="t"
                   _onClick={() => {
+                    setShopping("");
                     history.push("/signup");
                   }}
                 >
@@ -166,6 +174,15 @@ const Header = (props) => {
                 width: "3.5rem",
                 height: "3.5rem",
                 fontSize: "3.5rem",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setShopping("");
+                if(is_login === true) {
+                  return history.push("/cart");
+                }
+                window.alert("로그인이 필요한 서비스입니다.");
+                return history.push("login");
               }}
             >
               shopping_cart
@@ -183,7 +200,7 @@ const Div = styled.div`
   width: 100%;
   min-width: 118.4rem;
   min-width: 37.6rem;
-  height: 9.6rem;
+  height: 10rem;
   background-color: #000;
   z-index: 10;
   margin: 0 auto;
@@ -203,11 +220,12 @@ const Flex = styled.div`
 const Logo = styled.div`
   width: 15.9rem;
   aspect-ratio: auto 129 / 48;
-  height: 5.8rem;
+  height: 6.1rem;
   background-image: url(${hexameat});
   background-position: 40%;
   background-size: cover;
   cursor: pointer;
+  margin: 0 2rem 0 0;
 `;
 
 export default Header;

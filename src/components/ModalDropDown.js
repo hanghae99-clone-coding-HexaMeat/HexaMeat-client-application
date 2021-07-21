@@ -7,22 +7,14 @@ const ModalDropDown = (props) => {
   const dropdownRef = React.useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
-  console.log(props);
-  const firstbtn = props.option[0];
-  const [btnname, setBtnName] = React.useState(firstbtn);
+
+  const option = props?.option[0];
 
   const chooseOption = (event) => {
-    setBtnName(event.target.innerText);
+    props.getOption(event.target.innerText);
     setIsActive(null);
   };
 
-  const sendOption = (option) => {
-    props.getOption(option);
-  };
-
-  React.useEffect(() => {
-    sendOption(btnname);
-  },[]);
   return (
     <div className="container">
       <div className="menu-container">
@@ -44,7 +36,7 @@ const ModalDropDown = (props) => {
                 margin="1rem 0 1rem 8rem"
                 bold2="600"
               >
-                {btnname}
+                {props?.options}
               </Text>
               <div
                 style={{
@@ -80,22 +72,24 @@ const ModalDropDown = (props) => {
             top: "4.9rem",
           }}
         >
-          {props.option.map((option, idx) => {
-            return (
-              <Text
-                size="1.6rem"
-                color="#212121"
-                bold2="600"
-                text_align="center"
-                margin="1.6rem 0 1.6rem 0.9rem"
-                cursor="t"
-                _onClick={chooseOption}
-                key={props.id}
-              >
-                {option}
-              </Text>
-            );
-          })}
+          {props?.option && props?.option.length > 0
+            ? props?.option.map((option, idx) => {
+                return (
+                  <Text
+                    size="1.6rem"
+                    color="#212121"
+                    bold2="600"
+                    text_align="center"
+                    margin="1.6rem 0 1.6rem 0.9rem"
+                    cursor="t"
+                    _onClick={chooseOption}
+                    key={idx}
+                  >
+                    {option}
+                  </Text>
+                );
+              })
+            : ""}
         </nav>
       </div>
     </div>

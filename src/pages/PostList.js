@@ -14,21 +14,28 @@ import { Grid, Text, Image } from "../elements";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as cartActions } from "../redux/modules/cart";
 
 const PostList = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
-  
+
   React.useEffect(() => {
     dispatch(postActions.getPostAX());
+    dispatch(cartActions.getCartAX());
   }, []);
-
   return (
     <Grid margin="0 auto">
       <Grid>
         <Main1
           onClick={() => {
-            window.alert("죄송합니다. 준비중입니다!");
+            if (
+              window.confirm(
+                `준비중인 서비스입니다.\n현재 서비스 중인 쇼핑하기로 이동하시겠습니까?\n(확인을 누르시면 이동합니다)`
+              ) === true
+            ) {
+              history.push("/posts");
+            }
           }}
         />
       </Grid>
@@ -39,7 +46,7 @@ const PostList = (props) => {
         <Grid maxWidth="59rem" padding="2rem">
           <Main3
             onClick={() => {
-              window.alert("죄송합니다. 준비중입니다!");
+              window.alert("죄송합니다. 준비중인 서비스입니다!");
             }}
           />
         </Grid>
@@ -80,6 +87,7 @@ const Main1 = styled.div`
   background-position: 50%;
   background-size: cover;
   cursor: pointer;
+  margin: 8rem 0 0 0;
 `;
 const Main2 = styled.div`
   padding-top: 30%;

@@ -25,9 +25,8 @@ const getPostAX = () => {
       .get("http://54.180.152.35/products", { headers: headers })
       .then((res) => {
         let post_list = [];
-        
+        console.log(res);
         res.data.result.forEach((p) => {
-          console.log(res);
           let post = {
             id: p.id,
             title: p.title,
@@ -42,7 +41,6 @@ const getPostAX = () => {
           };
           post_list.push(post);
         });
-        console.log(post_list);
         dispatch(setPost(post_list));
       });
   };

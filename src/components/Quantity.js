@@ -4,29 +4,24 @@ import styled from "styled-components";
 import { Grid, Button, Text } from "../elements";
 
 const Quantity = (props) => {
-  const [qnum, setQNum] = React.useState(1);
-  const sendQuantity = (qnum) => {
-    props.getQuantity(qnum);
-  };
+  const quantity = props?.quantity;
 
   const addQ = () => {
-    setQNum(qnum + 1);
-    if(qnum === 20){
-      setQNum(20);
+    props.getQuantity(quantity + 1);
+    if(quantity === 20){
+      props.getQuantity(20);
       window.alert("주문은 20개까지만 가능합니다.");
       return;
     }
-    sendQuantity(qnum + 1);
   };
 
   const minusQ = () => {
-    setQNum(qnum - 1);
-    if (qnum === 1) {
-      setQNum(1);
+    props.getQuantity(quantity - 1);
+    if (quantity === 1) {
+      props.getQuantity(1);
       window.alert("최소 수량은 1개입니다.");
       return;
     }
-    sendQuantity(qnum - 1);
   };
 
   return (
@@ -69,7 +64,7 @@ const Quantity = (props) => {
               text_align="center"
               //   margin="1rem 0 1rem 8rem"
             >
-              {qnum}
+              {quantity}
             </Text>
             <Button
               width="5rem"

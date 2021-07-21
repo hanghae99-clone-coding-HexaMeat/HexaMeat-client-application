@@ -6,8 +6,10 @@ import Copyright from "../components/Copyright";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+import { history } from "../redux/configureStore";
+
 const Login = (props) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
@@ -38,7 +40,7 @@ const Login = (props) => {
           bold2="900"
           color="#212121"
           text_align="center"
-          margin="6rem 0 0 0"
+          margin="16rem 0 0 0"
         >
           로그인
         </Text>
@@ -82,16 +84,25 @@ const Login = (props) => {
           >
             로그인
           </Button>
+          <Text size="1.6rem" bold text_align="center" margin="2rem 1rem">
+            정육각이 처음이신가요?&nbsp;
+            <span
+              style={{ color: "rgb(233, 45, 68)", cursor: "pointer" }}
+              onClick={() => {
+                history.push("/signup");
+              }}
+            >
+              회원가입하기
+            </span>
+          </Text>
         </Grid>
       </Grid>
-      <Copyright margin="15rem 0 0 0"/>
+      <Copyright margin="15rem 0 0 0" />
     </React.Fragment>
   );
 };
 
-Login.defaultProps = {
-  
-};
+Login.defaultProps = {};
 
 const InputId = styled.input`
   width: 31.2rem;
