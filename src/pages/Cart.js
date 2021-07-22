@@ -144,7 +144,7 @@ const Cart = (props) => {
                     _onClick={() => {
                       const really = window.confirm("주문하시겠습니까?");
                       if (really) {
-                        dispatch(cartActions.deleteAllAX());ㅇ
+                        dispatch(cartActions.deleteAllAX());
                       }
                       window.alert(`구매 완료되었습니다! 감사합니다!\n`);
                     }}
