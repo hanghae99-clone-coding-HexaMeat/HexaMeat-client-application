@@ -28,7 +28,7 @@ const Detail = (props) => {
     .split(")")[0]
     .split("(")[1]
     .split("g")[0];
-  const pergram = (post?.price / gram) * 100;
+  const pergram = parseInt(post?.price / gram) * 100;
 
   const [quantity, setQuantity] = React.useState(1);
   const getQuantity = (quantity) => {
