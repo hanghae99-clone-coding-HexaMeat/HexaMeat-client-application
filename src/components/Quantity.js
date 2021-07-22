@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import { Grid, Button, Text } from "../elements";
 
@@ -33,7 +32,6 @@ const Quantity = (props) => {
             height="5rem"
             is_border="0.1rem solid gray"
             bg="#1c1c1c"
-            // _onClick={onClick}
             cursor
             is_flex
           >
@@ -62,9 +60,8 @@ const Quantity = (props) => {
               bold2="400"
               color="white"
               text_align="center"
-              //   margin="1rem 0 1rem 8rem"
             >
-              {quantity}
+              {props?.quantity}
             </Text>
             <Button
               width="5rem"

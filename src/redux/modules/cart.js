@@ -2,25 +2,20 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 
-// 액션 타입부터 정해줍니다!
 const SET_CART = "SET_CART";
-const LOG_OUT = "LOG_OUT";
-const SET_USER = "SET_USER";
+const SET_TOTAL = "SET_TOTAL";
+const DELETE_CART = "DELETE_CART";
 
-// 액션 생성 함수를 만들어요.
-//  redux-actions의 createAction을 사용해서 만들어줍니다.
 const setCart = createAction(SET_CART, (product_list) => ({ product_list }));
-const logOut = createAction(LOG_OUT, (user) => ({ user }));
-const setUser = createAction(SET_USER, (user) => ({ user }));
+const setTotal = createAction(SET_TOTAL, (total) => ({ total }));
+const deleteCart = createAction(DELETE_CART, (id, product_list) => ({
+  id,
+  product_list,
+}));
 
-// initialState를 만듭니다.
-// 기본 값을 미리 정해주는거예요.
-/**
- * user 유저 정보가 들어가는 딕셔너리
- * is_login 로그인했는 지, 아닌 지 여부
- */
 const initialState = {
   list: [],
+  totalPrice: [],
 };
 
 const addCartAX = (productId, option, quantity) => {
@@ -30,17 +25,21 @@ const addCartAX = (productId, option, quantity) => {
       //   "Content-Type": "multipart/form-data",
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
-      "authorization": `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     };
+
     axios
       .post(
-        `http://54.180.152.35/cart?productId=${productId}&productOption=${option}`,
+        `http://54.180.152.35/cart?productId=${productId}`,
         {
+          productOption: option,
           quantity: quantity,
         },
         { headers: headers }
       )
-      .then()
+      .then((res) => {
+        console.log(res);
+      })
       .catch((err) => {
         window.alert(err.response.data.errorMessage);
       });
@@ -56,32 +55,163 @@ const getCartAX = () => {
       "Access-Control-Allow-Origin": "*",
       authorization: `Bearer ${token}`,
     };
+
     axios
       .get("http://54.180.152.35/cart", { headers: headers })
       .then((res) => {
-        console.log(res);
+        let product_list = [];
+        res.data.products.forEach((p) => {
+          let product = {
+            cartId: p.cartId,
+            title: p.title,
+            img: p.image,
+            option: p.productOption,
+            weight: p.weight,
+            quantity: p.quantity,
+            price: p.price,
+            total: p.totalPriceOfProduct,
+          };
+          product_list.push(product);
+        });
+        let allprice = res.data.totalPriceOfCart;
+        dispatch(setTotal(allprice));
+        dispatch(setCart(product_list));
       })
       .catch((err) => {
         window.alert(err.response.data.errorMessage);
       });
   };
 };
-// reducer
+
+const addQtyAX = (cartId) => {
+  return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    const headers = {
+      //   "Content-Type": "multipart/form-data",
+      // "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      authorization: `Bearer ${token}`,
+    };
+
+    axios
+      .patch(
+        `http://54.180.152.35/cart?cartId=${cartId}&action=plus`,
+        {},
+        {
+          headers: headers,
+        }
+      )
+      .then((res) => {})
+      .catch((err) => {
+        window.alert(err.response.data.errorMessage);
+      });
+  };
+};
+
+const minusQtyAX = (cartId) => {
+  return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    const headers = {
+      //   "Content-Type": "multipart/form-data",
+      // "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      authorization: `Bearer ${token}`,
+    };
+
+    axios
+      .patch(
+        `http://54.180.152.35/cart?cartId=${cartId}&action=minus`,
+        {},
+        {
+          headers: headers,
+        }
+      )
+      .then((res) => {})
+      .catch((err) => {
+        window.alert(err.response.data.errorMessage);
+      });
+  };
+};
+
+const deleteCartAX = (cartId) => {
+  return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    const headers = {
+      //   "Content-Type": "multipart/form-data",
+      // "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      authorization: `Bearer ${token}`,
+    };
+
+    axios
+      .delete(`http://54.180.152.35/cart?cartId=${cartId}`, {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch(deleteCart(cartId));
+        history.replace("/cart");
+      })
+      .catch((err) => {
+        window.alert(err.response.data.errorMessage);
+      });
+  };
+};
+
+const deleteAllAX = () => {
+  return function (dispatch, getState, { history }) {
+    const token = sessionStorage.getItem("token");
+    const headers = {
+      //   "Content-Type": "multipart/form-data",
+      // "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      authorization: `Bearer ${token}`,
+    };
+
+    axios
+      .delete(`http://54.180.152.35/cart/buy`, {
+        headers: headers,
+      })
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        window.alert(err.response.data.errorMessage);
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_CART]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.product_list;
       }),
+    [SET_TOTAL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.totalPrice = action.payload.total;
+      }),
+    [DELETE_CART]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.list.findIndex((p) => p.id === action.payload.cartId);
+        if (idx !== -1) {
+          draft.list.splice(idx, 1);
+        }
+      }),
   },
   initialState
 );
 
-// 만든 액션생성자들(+중간다리들)을 외부에서 호출할 수 있도록 내보내줍니다. 내보낼 필요가 없는 건 굳이 내보내지 않아도 괜찮아요!
 const actionCreators = {
   setCart,
+  setTotal,
+  deleteCart,
   addCartAX,
   getCartAX,
+  addQtyAX,
+  minusQtyAX,
+  deleteCartAX,
+  deleteAllAX,
 };
 
 export { actionCreators };

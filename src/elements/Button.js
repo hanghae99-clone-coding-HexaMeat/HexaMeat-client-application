@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Button = (props) => {
   const {
     _onClick,
+    _onClose,
     children,
     margin,
     width,
@@ -40,7 +41,7 @@ const Button = (props) => {
 
   return (
     <React.Fragment>
-      <ElButton {...styles} onClick={_onClick}>
+      <ElButton {...styles} onClick={_onClick} onClose={_onClose}>
         {children}
       </ElButton>
     </React.Fragment>
@@ -50,6 +51,7 @@ const Button = (props) => {
 Button.defaultProps = {
   children: null,
   _onClick: () => {},
+  _onClose: () => {},
   margin: false,
   width: "100%",
   height: "100%",

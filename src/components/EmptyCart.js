@@ -1,8 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import Copyright from "../components/Copyright";
 
-import { Grid, Image, Text, Button } from "../elements";
+import { Grid, Text, Button } from "../elements";
 import { history } from "../redux/configureStore";
 
 const EmptyCart = (props) => {
@@ -37,8 +36,7 @@ const EmptyCart = (props) => {
             <Text bold2="700" color="white" size="2rem" text_align="center">
               쇼핑 계속하기
             </Text>
-
-            <span class="material-icons" style={{ color: "white" }}>
+            <span className="material-icons" style={{ color: "white" }}>
               east
             </span>
           </Grid>

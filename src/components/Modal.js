@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import CloseButton from "./CloseButton";
 import Portal from "./Portal";
-import {Grid} from "../elements";
 
 function Modal({
   className,
@@ -99,7 +98,6 @@ const ModalInner = styled.div`
   transform: translateY(-50%);
   border-radius: 0.3rem;
   margin: 0 auto;
-  /* padding: 40px 20px; */
 `;
 
 
