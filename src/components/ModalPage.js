@@ -6,12 +6,19 @@ import ModalQuantity from "./ModalQuantity";
 import { Grid, Text, Button } from "../elements";
 import { priceCheck } from "../shared/pricecheck";
 
-import { useDispatch } from "react-redux";
-import {history} from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import { history } from "../redux/configureStore";
 import { actionCreators as cartActions } from "../redux/modules/cart";
 
-const ModalPage = (props) => {
+const ModalPage = (props, onClose) => {
   const dispatch = useDispatch();
+  const is_login = useSelector((state) => state.user.is_login);
+
+  const close = (e) => {
+    if (props?.onClose) {
+      props?.onClose(e);
+    }
+  };
 
   const [quantity, setQuantity] = React.useState(1);
   const getQuantity = (qnum) => {
@@ -25,9 +32,26 @@ const ModalPage = (props) => {
 
   const totalPrice = props?.price * parseInt(quantity);
 
-  const addCart = () => {
+  const addCart = (e) => {
+    if(!is_login){
+      window.alert("로그인이 필요한 서비스입니다.");
+      return history.push("/login");
+    }
     dispatch(cartActions.addCartAX(props?.productId, option, quantity));
-  }
+    window.alert("장바구니에 추가되었습니다.");
+    close(e);
+  };
+
+  const addCartTo = () => {
+    if(!is_login){
+      window.alert("로그인이 필요한 서비스입니다.");
+      return history.push("/login");
+    }
+    dispatch(cartActions.addCartAX(props?.productId, option, quantity));
+    window.alert("장바구니로 이동합니다.");
+    history.push("/cart");
+  };
+
   return (
     <React.Fragment>
       <Grid height="34rem">
@@ -35,7 +59,7 @@ const ModalPage = (props) => {
           <Text color="black" size="2.5rem" bold2="900" text_align="center">
             {props.title}
           </Text>
-          <ModalQuantity getQuantity={getQuantity} quantity={quantity}/>
+          <ModalQuantity getQuantity={getQuantity} quantity={quantity} />
         </Grid>
         <Grid width="37rem" height="5.2rem" margin="0 auto 0 auto">
           <Text
@@ -46,7 +70,7 @@ const ModalPage = (props) => {
           >
             옵션선택
           </Text>
-          <ModalDropDown getOption={getOption} {...props} options={option}/>
+          <ModalDropDown getOption={getOption} {...props} options={option} />
         </Grid>
         <Grid height="6rem" margin="3.4rem 0 0 0">
           <Text
@@ -68,10 +92,7 @@ const ModalPage = (props) => {
             color="#fff"
             bold="900"
             size="1.8rem"
-            _onClick={() => {
-              addCart();
-              history.push("/cart");
-            }}
+            _onClick={addCartTo}
           >
             바로구매
           </Button>

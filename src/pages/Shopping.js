@@ -14,9 +14,8 @@ import Copyright from "../components/Copyright";
 import banner_pork from "../shared/img/banner_pork.png";
 import banner_beef from "../shared/img/banner_beef.png";
 import banner_kfc from "../shared/img/banner_kfc.png";
-import BtnCard from "../shared/img/BtnCard.png";
 
-const Shopping = (props) => {
+const Shopping = React.memo((props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
 
@@ -25,10 +24,11 @@ const Shopping = (props) => {
   const [kfc, setKfc] = React.useState(false);
 
   const changePork = () => {
-    setPork(true); //값이 true, false가 되어 있어서 삼항연산자 사용 시 !사용 가능
+    setPork(true);
     setBeef(false);
     setKfc(false);
   };
+
   const changeBeef = () => {
     setBeef(true);
     setPork(false);
@@ -42,8 +42,10 @@ const Shopping = (props) => {
   };
 
   React.useEffect(() => {
+    window.scrollTo(0,0);
     dispatch(postActions.getPostAX());
   }, []);
+
   return (
     <div style={{ marginBottom: "6rem" }}>
       <Grid margin="0 auto">
@@ -71,13 +73,31 @@ const Shopping = (props) => {
       </Grid>
 
       <Grid is_flex2 wrap="true" margin="7.2rem auto 0 auto">
-        <ShopBtn bg={pork? "#212121" : "#eee"} color={pork? "white" : "#212121"} cursor="t" value="pork" onClick={changePork}>
+        <ShopBtn
+          bg={pork ? "#212121" : "#eee"}
+          color={pork ? "white" : "#212121"}
+          cursor="t"
+          value="pork"
+          onClick={changePork}
+        >
           돼지
         </ShopBtn>
-        <ShopBtn bg={beef? "#212121" : "#eee"} color={beef? "white" : "#212121"} cursor="t" value="beef" onClick={changeBeef}>
+        <ShopBtn
+          bg={beef ? "#212121" : "#eee"}
+          color={beef ? "white" : "#212121"}
+          cursor="t"
+          value="beef"
+          onClick={changeBeef}
+        >
           소
         </ShopBtn>
-        <ShopBtn bg={kfc? "#212121" : "#eee"} color={kfc? "white" : "#212121"} cursor="t" value="kfc" onClick={changeKfc}>
+        <ShopBtn
+          bg={kfc ? "#212121" : "#eee"}
+          color={kfc ? "white" : "#212121"}
+          cursor="t"
+          value="kfc"
+          onClick={changeKfc}
+        >
           닭
         </ShopBtn>
       </Grid>
@@ -91,7 +111,7 @@ const Shopping = (props) => {
               return null;
             })
           : ""}
-          {!pork && beef && !kfc
+        {!pork && beef && !kfc
           ? post_list.map((p, idx) => {
               if (p.category === "소") {
                 return <Post {...p} key={p.id} />;
@@ -99,7 +119,7 @@ const Shopping = (props) => {
               return null;
             })
           : ""}
-          {!pork && !beef && kfc
+        {!pork && !beef && kfc
           ? post_list.map((p, idx) => {
               if (p.category === "닭") {
                 return <Post {...p} key={p.id} />;
@@ -108,10 +128,10 @@ const Shopping = (props) => {
             })
           : ""}
       </Grid>
-      <Copyright margin="15rem 0 0 0"/>
+      <Copyright margin="15rem 0 0 0" />
     </div>
   );
-};
+});
 
 Shopping.defaultProps = {};
 

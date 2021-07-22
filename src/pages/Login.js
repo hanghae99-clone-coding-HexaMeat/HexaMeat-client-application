@@ -29,8 +29,6 @@ const Login = (props) => {
     }
     dispatch(userActions.loginAX(id, pwd));
   };
-  console.log(id);
-  console.log(pwd);
 
   return (
     <React.Fragment>

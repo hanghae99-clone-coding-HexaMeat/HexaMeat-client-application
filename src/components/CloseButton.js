@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Image } from "../elements";
+import { Button} from "../elements";
 
 const CloseButton = (props) => {
   const { _onClick } = props;

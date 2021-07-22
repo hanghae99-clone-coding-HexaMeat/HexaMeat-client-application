@@ -4,18 +4,19 @@ import styled from "styled-components";
 import Modal from "./Modal";
 import ModalPage from "./ModalPage";
 
-import BtnCard from "../shared/img/BtnCard.png";
-import { Grid, Image, Text, Button } from "../elements";
+import { Grid, Image, Text } from "../elements";
 import { history } from "../redux/configureStore";
 
 const Post = (props) => {
   const [isHover, setIsHover] = React.useState(false);
+
   const chgBtnColor = () => {
     setIsHover(true);
   };
   const chgBtnColor2 = () => {
     setIsHover(false);
   };
+
   const [modalVisible, setModalVisible] = React.useState(false);
   const openModal = () => {
     setModalVisible(true);
@@ -28,7 +29,7 @@ const Post = (props) => {
     <div style={{ marginBottom: "6rem" }}>
       <Grid
         width="37.6rem"
-        height="42rem" // 임시
+        height="42rem"
         margin="0 2.8rem 3rem 0"
         bg="#f9f7f8"
         padding="1rem 1rem 0rem 1rem"
@@ -71,7 +72,7 @@ const Post = (props) => {
                 maskClosable={true}
                 onClose={closeModal}
               >
-                <ModalPage {...props} />
+                <ModalPage {...props} onClose={closeModal}/>
               </Modal>
             )}
           </>
@@ -101,7 +102,7 @@ const Post = (props) => {
                 maskClosable={true}
                 onClose={closeModal}
               >
-                <ModalPage {...props} />
+                <ModalPage {...props} onClose={closeModal}/>
               </Modal>
             )}
           </>
@@ -131,7 +132,6 @@ const Post = (props) => {
 };
 
 const CartBtn = styled.button`
-  /* position: relative; */
   width: 7.2rem;
   height: 7.2rem;
   box-shadow: 0 25px 10px -15px rgb(0 0 0 / 12%);

@@ -16,12 +16,13 @@ const Header = (props) => {
     setShopping("");
     dispatch(userActions.logout());
   };
-  
+
   const [shopping, setShopping] = React.useState("쇼핑하기");
 
   React.useEffect(() => {
     dispatch(userActions.isLogin());
   }, []);
+
   return (
     <Div>
       <Div2>
@@ -40,10 +41,8 @@ const Header = (props) => {
               bg="transparent"
               color="#fff"
               border="none"
-              // padding="0 0.5rem 0 0.5rem"
-              // margin="0 1.4rem 0 1.4rem"
               cursor="t"
-              borderBottom={shopping? "0.1rem solid white" : ""}
+              borderBottom={shopping ? "0.1rem solid white" : ""}
               _onClick={() => {
                 setShopping("쇼핑하기");
                 history.push("/posts");
@@ -178,11 +177,11 @@ const Header = (props) => {
               }}
               onClick={() => {
                 setShopping("");
-                if(is_login === true) {
-                  return history.push("/cart");
+                if (is_login === true) {
+                  return window.location.replace("/cart");
                 }
                 window.alert("로그인이 필요한 서비스입니다.");
-                return history.push("login");
+                return history.push("/login");
               }}
             >
               shopping_cart

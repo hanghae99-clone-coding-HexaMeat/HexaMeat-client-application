@@ -55,7 +55,6 @@ const Copyright = (props) => {
 };
 
 const Main5 = styled.div`
-  /* padding-top: 18%; */
   background-image: url(${bottomLogo});
   background-position: 40%;
   background-size: cover;

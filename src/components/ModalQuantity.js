@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import { Grid, Button, Text } from "../elements";
 
@@ -33,8 +32,7 @@ const ModalQuantity = (props) => {
             height="5rem"
             updownborder="0.1rem solid gray"
             bg="white"
-            // _onClick={onClick}
-            cursor
+            cursor="t"
             is_flex
           >
             <Button
@@ -42,7 +40,7 @@ const ModalQuantity = (props) => {
               height="5rem"
               border="0.1rem solid gray"
               padding="1rem"
-              cursor="pointer"
+              cursor="t"
               bg="white"
               _onClick={minusQ}
             >
@@ -62,7 +60,6 @@ const ModalQuantity = (props) => {
               bold2="400"
               color="#212121"
               text_align="center"
-              //   margin="1rem 0 1rem 8rem"
             >
               {props?.quantity}
             </Text>

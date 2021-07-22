@@ -8,8 +8,6 @@ const DropDown = (props) => {
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
 
-  const option = props?.option[0];
-
   const chooseOption = (event) => {
     props.getOption(event.target.innerText);
     setIsActive(null);
@@ -33,7 +31,7 @@ const DropDown = (props) => {
                 size="1.6rem"
                 color="white"
                 text_align="center"
-                margin="1rem 0 1rem 8rem"
+                margin="0 0 0 9rem"
                 bold2="600"
               >
                 {props?.options}
@@ -42,7 +40,7 @@ const DropDown = (props) => {
                 style={{
                   position: "relative",
                   float: "right",
-                  width: "1rem",
+                  width: "9rem",
                   padding: "0 0 0 7rem",
                 }}
               >

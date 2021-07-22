@@ -14,24 +14,22 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as cartActions } from "../redux/modules/cart";
 
 const Detail = (props) => {
+
   const dispatch = useDispatch();
 
   const id = props?.match.params.id;
+  const is_login = useSelector((state) => state.user.is_login);
   const post_list = useSelector((state) => state?.post.list);
   const post_idx = post_list?.findIndex((p) => p.id === id);
   const post = post_list[post_idx];
-  console.log(post);
-  const standard = post?.priceStandard
-    .split(" ")[2]
-    .split(")")[0]
-    .split("(")[1];
+
   const gram = post?.priceStandard
     .split(" ")[2]
     .split(")")[0]
     .split("(")[1]
     .split("g")[0];
   const pergram = (post?.price / gram) * 100;
-  console.log(standard);
+
   const [quantity, setQuantity] = React.useState(1);
   const getQuantity = (quantity) => {
     setQuantity(quantity);
@@ -41,14 +39,28 @@ const Detail = (props) => {
   const getOption = (option) => {
     setOption(option);
   };
-  const totalPrice = post?.price * parseInt(quantity);
 
-  console.log(props);
   const addCart = () => {
+    if(!is_login){
+      window.alert("로그인이 필요한 서비스입니다.");
+      return history.push("/login");
+    }
     dispatch(cartActions.addCartAX(post?.productId, option, quantity));
+    window.alert("장바구니에 추가되었습니다.");
+  };
+  
+  const addCartTo = () => {
+    if(!is_login){
+      window.alert("로그인이 필요한 서비스입니다.");
+      return history.push("/login");
+    }
+    dispatch(cartActions.addCartAX(post?.productId, option, quantity));
+    window.alert("추가 완료! 장바구니로 이동합니다.");
+    history.push("/cart");
   };
 
   React.useEffect(() => {
+    window.scrollTo(0,0);
     if (post) {
       return;
     }
@@ -118,10 +130,7 @@ const Detail = (props) => {
                 margin="0 2rem 0 0"
                 cursor="t"
                 border="none"
-                _onClick={() => {
-                  addCart();
-                  history.push("/cart");
-                }}
+                _onClick={addCartTo}
               >
                 <Text size="1.6rem" color="#fff" bold2="900">
                   바로구매

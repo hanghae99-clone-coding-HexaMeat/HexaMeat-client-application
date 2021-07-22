@@ -5,25 +5,24 @@ import main1 from "../shared/img/main1.png";
 import main2 from "../shared/img/main2.png";
 import main3 from "../shared/img/main3.png";
 import main4 from "../shared/img/main4.png";
-import bottomLogo from "../shared/img/bottomimg.svg";
 
 import Post from "../components/Post";
 import Copyright from "../components/Copyright";
 
-import { Grid, Text, Image } from "../elements";
+import { Grid } from "../elements";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
-import { actionCreators as cartActions } from "../redux/modules/cart";
 
-const PostList = (props) => {
+const PostList = React.memo((props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
 
   React.useEffect(() => {
+    window.scrollTo(0,0);
     dispatch(postActions.getPostAX());
-    dispatch(cartActions.getCartAX());
   }, []);
+  
   return (
     <Grid margin="0 auto">
       <Grid>
@@ -77,7 +76,7 @@ const PostList = (props) => {
       <Copyright />
     </Grid>
   );
-};
+});
 
 PostList.defaultProps = {};
 
