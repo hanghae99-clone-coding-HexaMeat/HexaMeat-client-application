@@ -7,7 +7,6 @@ import Signup from "../pages/Signup";
 import Header from "../components/Header";
 import Shopping from "../pages/Shopping";
 import Cart from "../pages/Cart";
-import EmptyCart from "../components/EmptyCart";
 
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -27,7 +26,6 @@ function App() {
           <Route path="/login" exacrt component={Login} />
           <Route path="/signup" exacrt component={Signup} />
           <Route path="/cart" exact component={Cart} />
-          <Route path="/cart/:id" exact component={EmptyCart} />
         </ConnectedRouter>
       </Grid>
     </React.Fragment>

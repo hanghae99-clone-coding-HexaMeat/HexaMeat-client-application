@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5ded139a.chunk.css",
+    "main.js": "/static/js/main.91caae21.chunk.js",
+    "main.js.map": "/static/js/main.91caae21.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ffa11274.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ffa11274.js.map",
+    "static/js/2.340d9fe5.chunk.js": "/static/js/2.340d9fe5.chunk.js",
+    "static/js/2.340d9fe5.chunk.js.map": "/static/js/2.340d9fe5.chunk.js.map",
+    "static/js/3.64b23f08.chunk.js": "/static/js/3.64b23f08.chunk.js",
+    "static/js/3.64b23f08.chunk.js.map": "/static/js/3.64b23f08.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.5ded139a.chunk.css.map": "/static/css/main.5ded139a.chunk.css.map",
+    "static/js/2.340d9fe5.chunk.js.LICENSE.txt": "/static/js/2.340d9fe5.chunk.js.LICENSE.txt",
+    "static/media/banner_beef.58dc8090.png": "/static/media/banner_beef.58dc8090.png",
+    "static/media/banner_kfc.76099590.png": "/static/media/banner_kfc.76099590.png",
+    "static/media/banner_pork.040fe76d.png": "/static/media/banner_pork.040fe76d.png",
+    "static/media/bottomimg.279eeab2.svg": "/static/media/bottomimg.279eeab2.svg",
+    "static/media/hexameat.2974c260.png": "/static/media/hexameat.2974c260.png",
+    "static/media/main1.2a813c01.png": "/static/media/main1.2a813c01.png",
+    "static/media/main2.abb02523.png": "/static/media/main2.abb02523.png",
+    "static/media/main3.81e8dc32.png": "/static/media/main3.81e8dc32.png",
+    "static/media/main4.f1070b58.png": "/static/media/main4.f1070b58.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ffa11274.js",
+    "static/js/2.340d9fe5.chunk.js",
+    "static/css/main.5ded139a.chunk.css",
+    "static/js/main.91caae21.chunk.js"
+  ]
+}
