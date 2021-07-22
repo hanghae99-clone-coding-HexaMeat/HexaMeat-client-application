@@ -1,10 +1,11 @@
 import React from "react";
+
 import Copyright from "../components/Copyright";
 
 import { Grid, Text, Button } from "../elements";
 import { history } from "../redux/configureStore";
 
-const EmptyCart = (props) => {
+const EmptyCart = () => {
   return (
     <Grid margin="0 auto" width="127rem">
       <Grid margin="20rem 5rem 5rem 0" is_flex2>
