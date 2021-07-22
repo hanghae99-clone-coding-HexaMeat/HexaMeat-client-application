@@ -40,7 +40,7 @@ const Signup = (props) => {
     if (nick === "") {
       window.alert("닉네임을 입력해주세요!");
     }
-    // window.alert("환영합니다! 회원가입이 완료되었습니다!");
+    window.alert("환영합니다! 회원가입이 완료되었습니다!");
     dispatch(userActions.signupAX(id, pwd, pwdCheck, nick));
   };
 
@@ -99,7 +99,6 @@ const Signup = (props) => {
                 overflow: "hidden",
                 borderBottom: "0.1rem solid #e1dedf",
                 display: "flex",
-                // justifyContent: "center",
                 alignItems: "center",
               }}
             >
@@ -110,7 +109,7 @@ const Signup = (props) => {
               </Div>
               <div>
                 <InputObj
-                  placeholder="아이디를 입력하세요."
+                  placeholder="아이디를 입력하세요.(5자 이상)"
                   onChange={(e) => {
                     setId(e.target.value);
                   }}
@@ -122,7 +121,6 @@ const Signup = (props) => {
                 overflow: "hidden",
                 borderBottom: "0.1rem solid #e1dedf",
                 display: "flex",
-                // justifyContent: "center",
                 alignItems: "center",
               }}
             >
@@ -133,7 +131,7 @@ const Signup = (props) => {
               </Div>
               <div>
                 <InputObj
-                  placeholder="비밀번호를 입력하세요."
+                  placeholder="비밀번호를 입력하세요.(5자 이상)"
                   type="password"
                   onChange={(e) => {
                     setPwd(e.target.value);
@@ -169,7 +167,6 @@ const Signup = (props) => {
                 overflow: "hidden",
                 borderBottom: "0.1rem solid #e1dedf",
                 display: "flex",
-                // justifyContent: "center",
                 alignItems: "center",
               }}
             >

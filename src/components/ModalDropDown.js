@@ -3,18 +3,27 @@ import "./modalstyle.css";
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { Button, Text, Grid } from "../elements";
 
+import { useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
+
 const ModalDropDown = (props) => {
+  const dispatch = useDispatch();
+
   const dropdownRef = React.useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const onClick = () => setIsActive(!isActive);
-
-  const option = props?.option[0];
 
   const chooseOption = (event) => {
     props.getOption(event.target.innerText);
     setIsActive(null);
   };
 
+  React.useEffect(() => {
+    if (!props) {
+      dispatch(postActions.getPostAX());
+    }
+  }, []);
+  
   return (
     <div className="container">
       <div className="menu-container">

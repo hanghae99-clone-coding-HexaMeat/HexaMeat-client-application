@@ -5,6 +5,7 @@ const Grid = (props) => {
   const {
     is_flex,
     is_flex2,
+    is_flex3,
     flex,
     is_float,
     position,
@@ -33,7 +34,6 @@ const Grid = (props) => {
     post_flex,
     card_flex,
     is_header,
-    is_center,
     is_border,
     text_align,
     updownborder,
@@ -42,6 +42,7 @@ const Grid = (props) => {
   const styles = {
     is_flex: is_flex,
     is_flex2: is_flex2,
+    is_flex3: is_flex3,
     flex: flex,
     is_float: is_float,
     review_flex: review_flex,
@@ -87,6 +88,7 @@ Grid.defaultProps = {
   children: null,
   is_flex: false,
   is_flex2: false,
+  is_flex3: false,
   is_float: false,
   review_flex: false,
   post_flex: false,
@@ -144,6 +146,10 @@ const GridBox = styled.div`
   ${(props) =>
     props.is_flex2
       ? `display: flex; align-items: center; justify-content: center;`
+      : ""}
+  ${(props) =>
+    props.is_flex3
+      ? `display: flex; justify-content: center;`
       : ""}
   ${(props) => (props.position ? `position: ${props.position};` : "")}
   ${(props) => (props.top ? `top: ${props.top};` : "")}

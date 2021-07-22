@@ -37,8 +37,7 @@ const EmptyCart = () => {
             <Text bold2="700" color="white" size="2rem" text_align="center">
               쇼핑 계속하기
             </Text>
-
-            <span class="material-icons" style={{ color: "white" }}>
+            <span className="material-icons" style={{ color: "white" }}>
               east
             </span>
           </Grid>

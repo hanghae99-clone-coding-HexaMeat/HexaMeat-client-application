@@ -14,7 +14,7 @@ import banner_pork from "../shared/img/banner_pork.png";
 import banner_beef from "../shared/img/banner_beef.png";
 import banner_kfc from "../shared/img/banner_kfc.png";
 
-const Shopping = (props) => {
+const Shopping = React.memo((props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
 
@@ -23,10 +23,11 @@ const Shopping = (props) => {
   const [kfc, setKfc] = React.useState(false);
 
   const changePork = () => {
-    setPork(true); //값이 true, false가 되어 있어서 삼항연산자 사용 시 !사용 가능
+    setPork(true);
     setBeef(false);
     setKfc(false);
   };
+
   const changeBeef = () => {
     setBeef(true);
     setPork(false);
@@ -40,8 +41,10 @@ const Shopping = (props) => {
   };
 
   React.useEffect(() => {
+    window.scrollTo(0,0);
     dispatch(postActions.getPostAX());
   }, []);
+
   return (
     <div style={{ marginBottom: "6rem" }}>
       <Grid margin="0 auto">
@@ -127,7 +130,7 @@ const Shopping = (props) => {
       <Copyright margin="15rem 0 0 0" />
     </div>
   );
-};
+});
 
 Shopping.defaultProps = {};
 
