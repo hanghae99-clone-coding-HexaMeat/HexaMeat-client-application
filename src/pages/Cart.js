@@ -1,25 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import BtnCard from "../shared/img/BtnCard.png";
-
 import Copyright from "../components/Copyright";
-import Post from "../components/Post";
 
-import { Grid, Image, Text, Button } from "../elements";
+import { Grid, Text, Button } from "../elements";
 import { history } from "../redux/configureStore";
-import { priceCheck } from "../shared/pricecheck";
 
 const Cart = (props) => {
-  console.log(props);
-  const [quantity, setQuantity] = React.useState(1);
-  const getQuantity = (qnum) => {
-    setQuantity(qnum);
-  };
-
-  const totalPrice = props.price * parseInt(quantity);
-  // const CartTotalPrice =
-
   return (
     <Grid margin="0 auto" width="127rem">
       <Grid margin="20rem 5rem 5rem 0" is_flex2>
@@ -29,7 +16,6 @@ const Cart = (props) => {
       </Grid>
 
       <Grid flex>
-        {/* L그리드 전체 */}
         <Grid
           width="86rem"
           height="auto"
@@ -57,51 +43,54 @@ const Cart = (props) => {
 
           <Grid
             height="14.7rem"
-            flex
+            is_flex2
             padding="2rem 0"
             align_items
             borderBottom="0.1rem solid #e1dedf"
           >
-            <Grid>
-              <MainPic
-                src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"
-                cursor="t"
-                size="100%"
-                _onClick={() => {
-                  history.push("/");
-                }}
-              />
-            </Grid>
-
-            <Grid padding="1rem 0">
-              <Text size="1.6rem" cursor="t">
-                초신선 돼지 삼겹살 구이용
-              </Text>
-              <Text color="#9B9B9B" cursor="t">
-                보통(16mm)
-              </Text>
-            </Grid>
-
-            <Grid is_flex2 height="2rem" margin="2.5rem 0 0 25rem">
-              <Text color="#9b9b9b" size="3.4rem" margin="0 2rem 0 0">
-                600g 기준
-              </Text>
-
-              <Grid is_flex2>
-                <Text size="1.6rem">???원 </Text>
-              </Grid>
-              <Grid>
-                <span
-                  class="material-icons"
-                  style={{
-                    backgroundColor: "gray",
-                    color: "white",
-                    cursor: "pointer",
-                    border: "none",
+            <Grid is_flex width="86rem">
+              <Grid width="10rem" margin="1.9rem 0 0 2.4rem">
+                <MainPic
+                  src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"
+                  cursor="t"
+                  size="100%"
+                  _onClick={() => {
+                    history.push("/");
                   }}
-                >
-                  disabled_by_default
-                </span>
+                />
+              </Grid>
+
+              <Grid margin="0 0 0 15rem" padding="1rem 0 0 0 ">
+                <Text size="1.6rem" cursor="t">
+                  초신선 돼지 삼겹살 구이용
+                </Text>
+                <Text color="#9B9B9B" cursor="t">
+                  보통(16mm)
+                </Text>
+              </Grid>
+
+              <Grid is_flex height="auto">
+                <Grid width="10rem">
+                  <Text color="#9b9b9b" size="1.4rem" margin="0 2rem 0 0">
+                    600g 기준
+                  </Text>
+                </Grid>
+                <Grid>
+                  <Text size="1.6rem">???원 </Text>
+                </Grid>
+                <Grid>
+                  <span
+                    class="material-icons"
+                    style={{
+                      backgroundColor: "gray",
+                      color: "white",
+                      cursor: "pointer",
+                      border: "none",
+                    }}
+                  >
+                    disabled_by_default
+                  </span>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
